@@ -11,6 +11,17 @@
     
     <item>
       <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Action/War/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/War/</guid>
+      <description>War 包部署 pom packaging &amp;lt;packaging&amp;gt;war&amp;lt;/packaging&amp;gt; 继承 SpringBootServletInitializer /** * 需要继承 SpringBootServletInitializer */ @SpringBootApplication public class Application extends SpringBootServletInitializer { public static void main(String[] args) { Application.run(LifecycleApplication.class, args); } @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) { return builder.sources(Application.class); } } 原理   Java™ Servlet 3.1 Specification &amp;gt; 8.2.4 Shared libraries / runtimes pluggability
+ Java™ Servlet 3.1 规范 &amp;gt; 8.2.4 共享库 / 运行时可插拔性
+    javax.servlet.ServletContainerInitializer  spring-web : org.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints-detail/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
