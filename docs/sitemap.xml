@@ -4,7 +4,12 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Boot/_sidebar/</loc>
-    <lastmod>2020-01-26T18:07:38+08:00</lastmod>
+    <lastmod>2020-01-26T20:17:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Spring-Boot/docs/Action/Hot-Swapping/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -43,7 +48,7 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Boot/</loc>
-    <lastmod>2020-01-26T18:07:38+08:00</lastmod>
+    <lastmod>2020-01-26T20:17:33+08:00</lastmod>
   </url>
   
 </urlset>

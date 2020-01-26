@@ -15,7 +15,22 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/_sidebar/</guid>
-      <description> Core    Actuator  Endpoints Endpoints 详解 ReadMore  实战  war 包部署 Testing Error Page   </description>
+      <description> Core    Actuator  Endpoints Endpoints 详解 ReadMore  Action  war 包部署 热部署 Testing Error Page   </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Action/Hot-Swapping/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/Hot-Swapping/</guid>
+      <description>热部署   “How-to” Guides &amp;gt; 15. Hot Swapping
+ Using Spring Boot &amp;gt; 8. Developer Tools
+   依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-devtools&amp;lt;/artifactId&amp;gt; &amp;lt;optional&amp;gt;true&amp;lt;/optional&amp;gt; &amp;lt;/dependency&amp;gt; 默认配置 spring.freemarker.cache=false spring.devtools.restart.poll-interval=1s spring.devtools.restart.quiet-period=400ms spring.devtools.restart.exclude=META-INF/maven/**,META-INF/resources/**,resources/**,static/**,public/**,templates/**,**/*Test.class,**/*Tests.class,git.properties,META-INF/build-info.properties # 根据指定的文件触发 spring.devtools.restart.trigger-file= spring.devtools.livereload.enabled=true IDEA 设置 devtools 是检查 classpath（编译后的文件、target 目录） 下文件变化，所以修改文件后需要手动或者自动重新编译。
+IDEA 手动编译比较简单，右键修改的文件选择 “Build Module xxx” 或 “Recompile xxx” 即可。
+自动编译设置比较复杂，步骤如下
+ 双击 Shift， 搜索 Maintenance 回车 选择 Registry... 找到 compiler.automake.allow.when.app.running， 进行勾选  LiveReload LiveReload 是个自动刷线页面的工具，如果内容有变化会自动刷新页面。
+Spring Boot 启动时默认暴露 LiveReload 端口，可以在启动日志中找到</description>
     </item>
     
     <item>
