@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction on Spring-Boot</title>
+    <link>https://hello-world-example.github.io/Spring-Boot/</link>
+    <description>Recent content in Introduction on Spring-Boot</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="https://hello-world-example.github.io/Spring-Boot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/_sidebar/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/_sidebar/</guid>
+      <description> Actuator  Endpoints Endpoints 详解 ReadMore  Testing Error Page  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints-detail/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints-detail/</guid>
+      <description>Endpoints 详解 应用配置类 由于Spring Boot为了改善传统Spring应用繁杂的配置内容，采用了包扫描和自动化配置的机制来加载原本集中于xml文件中的各项内容。 虽然这样的做法，让我们的代码变得非常简洁，但是整个应用的实例创建和依赖关系等信息都被离散到了各个配置类的注解上，这使得我们分析整个应用中资源和实例的各种关系变得非常的困难。 而这类端点就可以帮助我们轻松的获取一系列关于Spring 应用配置内容的详细报告，比如：自动化配置的报告、Bean创建的报告、环境属性的报告等。
+/autoconfig 该端点用来获取应用的自动化配置报告，其中包括所有自动化配置的候选项。同时还列出了每个候选项自动化配置的各个先决条件是否满足。 所以，该端点可以帮助我们方便的找到一些自动化配置为什么没有生效的具体原因。该报告内容将自动化配置内容分为两部分： - positiveMatches中返回的是条件匹配成功的自动化配置 - negativeMatches中返回的是条件匹配不成功的自动化配置
+{ &amp;#34;positiveMatches&amp;#34;: { // 条件匹配成功的 &amp;#34;EndpointWebMvcAutoConfiguration&amp;#34;: [ { &amp;#34;condition&amp;#34;: &amp;#34;OnClassCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;@ConditionalOnClass classes found: javax.servlet.Servlet,org.springframework.web.servlet.DispatcherServlet&amp;#34; }, { &amp;#34;condition&amp;#34;: &amp;#34;OnWebApplicationCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;found web application StandardServletEnvironment&amp;#34; } ], ... }, &amp;#34;negativeMatches&amp;#34;: { // 条件不匹配成功的 &amp;#34;HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration&amp;#34;: [ { &amp;#34;condition&amp;#34;: &amp;#34;OnClassCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;required @ConditionalOnClass classes not found: org.springframework.jdbc.core.JdbcTemplate&amp;#34; } ], ... } } 从如上示例中我们可以看到，每个自动化配置候选项中都有一系列的条件， 比如上面没有成功匹配的HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration配置， 它的先决条件就是需要在工程中包含org.springframework.jdbc.core.JdbcTemplate类，由于我们没有引入相关的依赖，它就不会执行自动化配置内容。 所以，当我们发现有一些期望的配置没有生效时，就可以通过该端点来查看没有生效的具体原因。
+/beans 该端点用来获取应用上下文中创建的所有Bean。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints/</guid>
+      <description>Endpoints Actuator endpoints 允许对你的应用进行监控和交互(interact). Spring Boot包括许多内置的 endpoints，您也可以添加自己的 endpoints. 例如，/healthendpoints 提供基本的应用程序健康信息。
+endpoints 暴露的方式将取决于您选择的技术类型。 大多数应用程序选择HTTP监控，其中 endpoints 的ID被映射到一个URL。 例如，默认情况下，健康 endpoints 将被映射到 /health。
+   ID Description Sensitive Default     actuator Provides a hypermedia-based “discovery page” for the other endpoints. Requires Spring HATEOAS to be on the classpath. true   auditevents 为当前应用暴露审计事件（audit events）信息 true   autoconfig 展示自动化配置报告 ，所有自动化配置的候选项， 为什么被应用或者不被应用等. true   beans 显示应用程序中所有Spring bean的完整列表 true   configprops 显示所有@ConfigurationProperties的整理列表。 true   dump 执行线程转储.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/readmore/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/readmore/</guid>
+      <description> ad  Spring Boot Actuator: Production-ready features  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Error-Page/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Error-Page/</guid>
+      <description> Spring Boot 错误页面 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Unit-Test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Unit-Test/</guid>
+      <description> Spring Boot 单元测试   Spring Boot - Part IV. Spring Boot features - 41. Testing   </description>
+    </item>
+    
+  </channel>
+</rss>

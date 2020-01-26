@@ -1,5 +1,11 @@
 # Spring Boot
 
-http://hello-world-example.github.io/Spring-Boot
 
+```
+# 本地服务
+hugo server -s HuGo/
+
+# 生成静态站点
+hugo -s HuGo/
+```
 
