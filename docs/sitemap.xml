@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Boot/_sidebar/</loc>
-    <lastmod>2020-01-26T20:17:33+08:00</lastmod>
+    <lastmod>2020-01-26T23:21:59+08:00</lastmod>
   </url>
   
   <url>
@@ -13,7 +13,12 @@
   </url>
   
   <url>
-    <loc>https://hello-world-example.github.io/Spring-Boot/docs/Action/War/</loc>
+    <loc>https://hello-world-example.github.io/Spring-Boot/docs/Action/Static-Resources/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Spring-Boot/docs/Action/War-Deploy/</loc>
     <priority>0</priority>
   </url>
   
@@ -24,11 +29,6 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/readmore/</loc>
     <priority>0</priority>
   </url>
   
@@ -48,7 +48,7 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Boot/</loc>
-    <lastmod>2020-01-26T20:17:33+08:00</lastmod>
+    <lastmod>2020-01-26T23:21:59+08:00</lastmod>
   </url>
   
 </urlset>

@@ -15,7 +15,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/_sidebar/</guid>
-      <description> Core    Actuator  Endpoints Endpoints 详解 ReadMore  Action  war 包部署 热部署 Testing Error Page   </description>
+      <description> Core    Actuator  Endpoints Endpoints 详解  Action  war 包部署 热部署 静态资源 Testing Error Page   </description>
     </item>
     
     <item>
@@ -35,10 +35,26 @@ Spring Boot 启动时默认暴露 LiveReload 端口，可以在启动日志中�
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Spring-Boot/docs/Action/War/</link>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Action/Static-Resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/War/</guid>
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/Static-Resources/</guid>
+      <description>静态资源  Spring Boot Features &amp;gt; 7.1.5. Static Content
+ 查找顺序  classpath:/META-INF/resources &amp;gt; Java™ Servlet Specification classpath:/resources classpath:/static classpath:/public  默认配置 spring.mvc.static-path-pattern=/** spring.resources.static-locations=classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/ webjars 格式  官网： https://www.webjars.org/
+作用： 依赖 jar 包，直接使用静态文件
+ 以 jquery 的 jar 包格式举例
+META-INF/resources/webjars/jquery/3.4.1/jquery.min.map META-INF/resources/webjars/jquery/3.4.1/jquery.min.js META-INF/resources/webjars/jquery/3.4.1/jquery.slim.js META-INF/resources/webjars/jquery/3.4.1/jquery.js META-INF/resources/webjars/jquery/3.4.1/webjars-requirejs.js META-INF/resources/webjars/jquery/3.4.1/jquery.slim.min.js META-INF/resources/webjars/jquery/3.4.1/jquery.slim.min.map 可通过 http://localhost:8080/webjars/jquery/3.4.1/jquery.js 直接访问 jar 包内的静态文件
+去掉访问路径中的版本号 （ 即访问 http://localhost:8080/webjars/jquery/jquery.js ），需要添加以下依赖：
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.webjars&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;webjars-locator-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${x.x.x}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 原理 @see
+ spring-webmvc : org.springframework.web.servlet.resource.ResourceResolver  spring-webmvc : org.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Action/War-Deploy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/War-Deploy/</guid>
       <description>War 包部署 pom packaging &amp;lt;packaging&amp;gt;war&amp;lt;/packaging&amp;gt; 继承 SpringBootServletInitializer /** * 需要继承 SpringBootServletInitializer */ @SpringBootApplication public class Application extends SpringBootServletInitializer { public static void main(String[] args) { Application.run(LifecycleApplication.class, args); } @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) { return builder.sources(Application.class); } } 原理   Java™ Servlet 3.1 Specification &amp;gt; 8.2.4 Shared libraries / runtimes pluggability
  Java™ Servlet 3.1 规范 &amp;gt; 8.2.4 共享库 / 运行时可插拔性
     javax.servlet.ServletContainerInitializer  spring-web : org.</description>
@@ -65,15 +81,6 @@ Spring Boot 启动时默认暴露 LiveReload 端口，可以在启动日志中�
       <description>Endpoints Actuator endpoints 允许对你的应用进行监控和交互(interact). Spring Boot包括许多内置的 endpoints，您也可以添加自己的 endpoints. 例如，/healthendpoints 提供基本的应用程序健康信息。
 endpoints 暴露的方式将取决于您选择的技术类型。 大多数应用程序选择HTTP监控，其中 endpoints 的ID被映射到一个URL。 例如，默认情况下，健康 endpoints 将被映射到 /health。
    ID Description Sensitive Default     actuator Provides a hypermedia-based “discovery page” for the other endpoints. Requires Spring HATEOAS to be on the classpath. true   auditevents 为当前应用暴露审计事件（audit events）信息 true   autoconfig 展示自动化配置报告 ，所有自动化配置的候选项， 为什么被应用或者不被应用等. true   beans 显示应用程序中所有Spring bean的完整列表 true   configprops 显示所有@ConfigurationProperties的整理列表。 true   dump 执行线程转储.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/readmore/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/readmore/</guid>
-      <description> ad  Spring Boot Actuator: Production-ready features  </description>
     </item>
     
     <item>
