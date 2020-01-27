@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Static Resources | Spring-Boot</title>
+
+
+<link rel="stylesheet" href="/Spring-Boot/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+
+
+
+
+<link rel="icon" href="/Spring-Boot/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://hello-world-example.github.io/Spring-Boot/">Spring-Boot</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fSpring-Boot\2f docs\2f Action\2fStatic-Resources\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong>Core</strong>
+
+<ul>
+<li></li>
+</ul></li>
+<li><strong>Actuator</strong>
+
+<ul>
+<li><a href="/Spring-Boot/docs/Actuator/endpoints/">Endpoints</a></li>
+<li><a href="/Spring-Boot/docs/Actuator/endpoints-detail/">Endpoints 详解</a></li>
+</ul></li>
+<li><strong>Action</strong>
+
+<ul>
+<li><a href="/Spring-Boot/docs/Action/War-Deploy/">war 包部署</a></li>
+<li><a href="/Spring-Boot/docs/Action/Hot-Swapping/">热部署</a></li>
+<li><a href="/Spring-Boot/docs/Action/Static-Resources/">静态资源</a></li>
+<li><del><a href="/Spring-Boot/docs/Unit-Test/">Testing</a></del></li>
+<li><del><a href="/Spring-Boot/docs/Error-Page/">Error Page</a></del></li>
+</ul></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/Spring-Boot/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Static Resources</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="静态资源">静态资源</h1>
+
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html">Spring Boot Features</a> &gt; <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-spring-mvc-static-content"> 7.1.5. Static Content</a></p>
+</blockquote>
+
+<h2 id="查找顺序">查找顺序</h2>
+
+<ul>
+<li><code>classpath:/META-INF/resources</code> &gt; <a href="https://javaee.github.io/servlet-spec/downloads/servlet-3.1/Final/servlet-3_1-final.pdf">Java™ Servlet Specification</a></li>
+<li><code>classpath:/resources</code></li>
+<li><strong><code>classpath:/static</code></strong></li>
+<li><code>classpath:/public</code></li>
+</ul>
+
+<h2 id="默认配置">默认配置</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-properties" data-lang="properties">spring.mvc.static-path-pattern=/**
+
+spring.resources.static-locations=classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/</code></pre></div>
+<h2 id="webjars-格式">webjars 格式</h2>
+
+<blockquote>
+<p>官网： <a href="https://www.webjars.org/">https://www.webjars.org/</a></p>
+
+<p>作用： 依赖 jar 包，直接使用静态文件</p>
+</blockquote>
+
+<p>以 jquery 的 jar 包格式举例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">META-INF/resources/webjars/jquery/3.4.1/jquery.min.map
+META-INF/resources/webjars/jquery/3.4.1/jquery.min.js
+META-INF/resources/webjars/jquery/3.4.1/jquery.slim.js
+META-INF/resources/webjars/jquery/3.4.1/jquery.js
+META-INF/resources/webjars/jquery/3.4.1/webjars-requirejs.js
+META-INF/resources/webjars/jquery/3.4.1/jquery.slim.min.js
+META-INF/resources/webjars/jquery/3.4.1/jquery.slim.min.map</code></pre></div>
+<p>可通过 <a href="http://localhost:8080/webjars/jquery/3.4.1/jquery.js">http://localhost:8080/webjars/jquery/3.4.1/jquery.js</a> 直接访问 jar 包内的静态文件</p>
+
+<p><strong>去掉访问路径中的版本号</strong> （ 即访问 <a href="http://localhost:8080/webjars/jquery/jquery.js">http://localhost:8080/webjars/jquery/jquery.js</a> ），需要添加以下依赖：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency&gt;</span>
+    <span style="color:#f92672">&lt;groupId&gt;</span>org.webjars<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId&gt;</span>webjars-locator-core<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>${x.x.x}<span style="color:#f92672">&lt;/version&gt;</span>
+<span style="color:#f92672">&lt;/dependency&gt;</span></code></pre></div>
+<p>原理 @see</p>
+
+<ul>
+<li><code>spring-webmvc</code> : <code>org.springframework.web.servlet.resource.ResourceResolver</code>
+
+<ul>
+<li><code>spring-webmvc</code> : <code>org.springframework.web.servlet.resource.AbstractResourceResolver</code>
+
+<ul>
+<li><code>spring-webmvc</code> : <code>org.springframework.web.servlet.resource.WebJarsResourceResolver</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="read-more">Read More</h2>
+
+<ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-developing-web-applications"> 7. Developing Web Applications</a></li>
+<li>Webjars
+
+<ul>
+<li><a href="https://www.webjars.org/documentation#servlet3">Instructions for Servlet 3</a></li>
+<li><a href="https://www.webjars.org/documentation#springmvc">Instructions for Spring MVC</a></li>
+<li><a href="https://www.webjars.org/documentation#springboot">Instructions for Spring Boot</a></li>
+</ul></li>
+</ul>
+</article>
+
+      
+<div class="book-footer justify-end">
+  
+  
+  <div>
+    <a href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Action/Static-Resources.md" target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#静态资源">静态资源</a>
+<ul>
+<li><a href="#查找顺序">查找顺序</a></li>
+<li><a href="#默认配置">默认配置</a></li>
+<li><a href="#webjars-格式">webjars 格式</a></li>
+<li><a href="#read-more">Read More</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>
