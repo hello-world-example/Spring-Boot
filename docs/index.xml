@@ -15,7 +15,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/_sidebar/</guid>
-      <description> Core  启动过程  Actuator  Endpoints Endpoints 详解  Action  war 包部署 热部署 静态资源 Testing Error Page   </description>
+      <description> Core  启动过程  Actuator  Endpoints Endpoints 详解  Action  war 包部署 热部署 静态资源 RFC 7230 and RFC 3986 错误 Testing Error Page   </description>
     </item>
     
     <item>
@@ -31,6 +31,16 @@ IDEA 手动编译比较简单，右键修改的文件选择 “Build Module xxx�
 自动编译设置比较复杂，步骤如下
  双击 Shift， 搜索 Maintenance 回车 选择 Registry... 找到 compiler.automake.allow.when.app.running， 进行勾选  LiveReload LiveReload 是个自动刷线页面的工具，如果内容有变化会自动刷新页面。
 Spring Boot 启动时默认暴露 LiveReload 端口，可以在启动日志中找到</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Action/RFC-7230_RFC-3986/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/RFC-7230_RFC-3986/</guid>
+      <description>RFC 7230 and RFC 3986 错误 问题 在使用 内嵌 Tomcat 的时候，有些请求会报以下错误：
+HTTP Status 400 – Bad Request Type Exception Report Message Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986 Description The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).</description>
     </item>
     
     <item>
