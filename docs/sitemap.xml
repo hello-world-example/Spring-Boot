@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Boot/_sidebar/</loc>
-    <lastmod>2020-01-26T23:21:59+08:00</lastmod>
+    <lastmod>2020-01-27T21:37:11+08:00</lastmod>
   </url>
   
   <url>
@@ -29,6 +29,11 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Spring-Boot/docs/Core/Main-Lifecycle/</loc>
     <priority>0</priority>
   </url>
   

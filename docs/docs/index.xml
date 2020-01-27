@@ -76,6 +76,15 @@ endpoints 暴露的方式将取决于您选择的技术类型。 大多数应用
     
     <item>
       <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Core/Main-Lifecycle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Core/Main-Lifecycle/</guid>
+      <description>main 方法启动过程 SpringApplication 构造方法 public SpringApplication(ResourceLoader resourceLoader, Class&amp;lt;?&amp;gt;... primarySources) { ... // 通过 SpringFactories 方式获取 ApplicationContextInitializer  // 允许在 ApplicationContext refresh 之前，对其实例做进一步的设置和处理  setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class)); // 通过 SpringFactories 方式获取 ApplicationListener 的实现，接收事件  setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class)); // 获取启动的类  this.mainApplicationClass = deduceMainApplicationClass(); } private Class&amp;lt;?&amp;gt; deduceMainApplicationClass() { ... StackTraceElement[] stackTrace = new RuntimeException().getStackTrace(); for (StackTraceElement stackTraceElement : stackTrace) { // 遍历调用栈，获取第一个 main 方法  if (&amp;#34;main&amp;#34;.equals(stackTraceElement.getMethodName())) { return Class.forName(stackTraceElement.getClassName()); } } .</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://hello-world-example.github.io/Spring-Boot/docs/Error-Page/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

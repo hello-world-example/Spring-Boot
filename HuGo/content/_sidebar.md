@@ -5,7 +5,7 @@ headless: true
 
 
 - **Core**
-  - 
+  - [启动过程]({{< relref "/docs/Core/Main-Lifecycle.md" >}})
 - **Actuator**
   - [Endpoints]({{< relref "/docs/Actuator/endpoints.md" >}})
   - [Endpoints 详解]({{< relref "/docs/Actuator/endpoints-detail.md" >}})

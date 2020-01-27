@@ -19,4 +19,6 @@ public class LifecycleApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(LifecycleApplication.class);
     }
+
+
 }
