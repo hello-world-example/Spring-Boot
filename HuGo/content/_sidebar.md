@@ -14,6 +14,7 @@ headless: true
   - [热部署]({{< relref "/docs/Action/Hot-Swapping.md" >}})
   - [静态资源]({{< relref "/docs/Action/Static-Resources.md" >}})
   - [RFC 7230 and RFC 3986 错误]({{< relref "/docs/Action/RFC-7230_RFC-3986.md" >}})
+  - [Error Page]({{< relref "/docs/Action/Error-Page.md" >}})
   - ~~[Testing]({{< relref "/docs/Unit-Test/index.md" >}})~~
-  - ~~[Error Page]({{< relref "/docs/Error-Page.md" >}})~~
+  - 
 

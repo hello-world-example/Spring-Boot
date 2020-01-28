@@ -15,7 +15,17 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/_sidebar/</guid>
-      <description> Core  启动过程  Actuator  Endpoints Endpoints 详解  Action  war 包部署 热部署 静态资源 RFC 7230 and RFC 3986 错误 Testing Error Page   </description>
+      <description> Core  启动过程  Actuator  Endpoints Endpoints 详解  Action  war 包部署 热部署 静态资源 RFC 7230 and RFC 3986 错误 Error Page Testing    </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Boot/docs/Action/Error-Page/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/Error-Page/</guid>
+      <description>Spring Boot 错误页面  官方文档 7.1.11. Error Handling
+ 静态错误页 src/ +- main/ +- resources/ +- static/ # 静态资源路径 +- error/ +- 404.html +- 5xx.html # 支持 xx 通配 404 处理 @Configuration @ConditionalOnWebApplication @AutoConfigureBefore(WebMvcAutoConfiguration.class) public class ErrorConf { @Bean @ConditionalOnMissingBean(CustomErrorController.class) public CustomErrorController exceptionController() { return new CustomErrorController(); } /** * @see org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController */ @Controller @RequestMapping(&amp;#34;/error&amp;#34;) public static class CustomErrorController implements ErrorController { @RequestMapping public ResponseEntity&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt; error() { Map&amp;lt;String, Object&amp;gt; body = new HashMap&amp;lt;&amp;gt;(); body.</description>
     </item>
     
     <item>
@@ -100,15 +110,6 @@ endpoints 暴露的方式将取决于您选择的技术类型。 大多数应用
       
       <guid>https://hello-world-example.github.io/Spring-Boot/docs/Core/Main-Lifecycle/</guid>
       <description>main 方法启动过程 SpringApplication 构造方法 public SpringApplication(ResourceLoader resourceLoader, Class&amp;lt;?&amp;gt;... primarySources) { ... // 通过 SpringFactories 方式获取 ApplicationContextInitializer  // 允许在 ApplicationContext refresh 之前，对其实例做进一步的设置和处理  setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class)); // 通过 SpringFactories 方式获取 ApplicationListener 的实现，接收事件  setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class)); // 获取启动的类  this.mainApplicationClass = deduceMainApplicationClass(); } private Class&amp;lt;?&amp;gt; deduceMainApplicationClass() { ... StackTraceElement[] stackTrace = new RuntimeException().getStackTrace(); for (StackTraceElement stackTraceElement : stackTrace) { // 遍历调用栈，获取第一个 main 方法  if (&amp;#34;main&amp;#34;.equals(stackTraceElement.getMethodName())) { return Class.forName(stackTraceElement.getClassName()); } } .</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Spring-Boot/docs/Error-Page/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Spring-Boot/docs/Error-Page/</guid>
-      <description> Spring Boot 错误页面 </description>
     </item>
     
     <item>

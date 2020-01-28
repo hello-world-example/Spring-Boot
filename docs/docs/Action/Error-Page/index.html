@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Error Page | Spring-Boot</title>
+
+
+<link rel="stylesheet" href="/Spring-Boot/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+
+
+
+
+<link rel="icon" href="/Spring-Boot/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://hello-world-example.github.io/Spring-Boot/">Spring-Boot</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fSpring-Boot\2f docs\2f Action\2f Error-Page\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong>Core</strong>
+
+<ul>
+<li><a href="/Spring-Boot/docs/Core/Main-Lifecycle/">启动过程</a></li>
+</ul></li>
+<li><strong>Actuator</strong>
+
+<ul>
+<li><a href="/Spring-Boot/docs/Actuator/endpoints/">Endpoints</a></li>
+<li><a href="/Spring-Boot/docs/Actuator/endpoints-detail/">Endpoints 详解</a></li>
+</ul></li>
+<li><strong>Action</strong>
+
+<ul>
+<li><a href="/Spring-Boot/docs/Action/War-Deploy/">war 包部署</a></li>
+<li><a href="/Spring-Boot/docs/Action/Hot-Swapping/">热部署</a></li>
+<li><a href="/Spring-Boot/docs/Action/Static-Resources/">静态资源</a></li>
+<li><a href="/Spring-Boot/docs/Action/RFC-7230_RFC-3986/">RFC 7230 and RFC 3986 错误</a></li>
+<li><a href="/Spring-Boot/docs/Action/Error-Page/">Error Page</a></li>
+<li><del><a href="/Spring-Boot/docs/Unit-Test/">Testing</a></del></li>
+<li></li>
+</ul></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/Spring-Boot/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Error Page</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="spring-boot-错误页面">Spring Boot 错误页面</h1>
+
+<blockquote>
+<p>官方文档 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-error-handling">7.1.11. Error Handling</a></p>
+</blockquote>
+
+<h2 id="静态错误页">静态错误页</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">src/
+ +- main/
+     +- resources/
+         +- static/ <span style="color:#75715e"># 静态资源路径</span>
+             +- error/
+                 +- <span style="color:#ae81ff">404</span>.html
+                 +- 5xx.html <span style="color:#75715e"># 支持 xx 通配</span></code></pre></div>
+<h2 id="404-处理">404 处理</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
+<span style="color:#a6e22e">@ConditionalOnWebApplication</span>
+<span style="color:#a6e22e">@AutoConfigureBefore</span>(WebMvcAutoConfiguration.<span style="color:#a6e22e">class</span>)
+<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> ErrorConf {
+
+    <span style="color:#a6e22e">@Bean</span>
+    <span style="color:#a6e22e">@ConditionalOnMissingBean</span>(CustomErrorController.<span style="color:#a6e22e">class</span>)
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">CustomErrorController</span> exceptionController() {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> CustomErrorController();
+    }
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * @see org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#a6e22e">@Controller</span>
+    <span style="color:#a6e22e">@RequestMapping</span>(<span style="color:#e6db74">&#34;/error&#34;</span>)
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomErrorController</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">ErrorController</span> {
+
+        <span style="color:#a6e22e">@RequestMapping</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ResponseEntity</span><span style="color:#f92672">&lt;</span>Map<span style="color:#f92672">&lt;</span>String, Object<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">error</span>() {
+            Map<span style="color:#f92672">&lt;</span>String, Object<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();
+            body.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;code&#34;</span>, <span style="color:#e6db74">&#34;404&#34;</span>);
+            body.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;message&#34;</span>, <span style="color:#e6db74">&#34;访问地址不存在&#34;</span>);
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ResponseEntity<span style="color:#f92672">&lt;&gt;</span>(body, HttpStatus.<span style="color:#a6e22e">OK</span>);
+        }
+
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">String</span> getErrorPath() {
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;/error&#34;</span>;
+        }
+    }
+}</code></pre></div>
+<h2 id="统一异常处理">统一异常处理</h2>
+
+<blockquote>
+<p>404 不经过 ControllerAdvice</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@ResponseBody</span>
+<span style="color:#a6e22e">@ControllerAdvice</span>(basePackages <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xyz.kail.demo&#34;</span>)
+<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> BaseExceptionAdvice {
+
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">static</span> Logger <span style="color:#a6e22e">logger</span> <span style="color:#f92672">=</span> LoggerFactory.<span style="color:#a6e22e">getLogger</span>(BaseExceptionAdvice.<span style="color:#a6e22e">class</span>);
+
+    <span style="color:#a6e22e">@ResponseStatus</span>(HttpStatus.<span style="color:#a6e22e">OK</span>)
+    <span style="color:#a6e22e">@ExceptionHandler</span>(Exception.<span style="color:#a6e22e">class</span>)
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Map</span><span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">handleException</span>(Exception <span style="color:#a6e22e">ex</span>) {
+
+        <span style="color:#66d9ef">if</span> (logger.<span style="color:#a6e22e">isErrorEnabled</span>()) {
+            logger.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;内部错误&#34;</span>, ex);
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span>() {
+            {
+                put(<span style="color:#e6db74">&#34;code&#34;</span>, String.<span style="color:#a6e22e">valueOf</span>(HttpStatus.<span style="color:#a6e22e">INTERNAL_SERVER_ERROR</span>.<span style="color:#a6e22e">value</span>()));
+                put(<span style="color:#e6db74">&#34;message&#34;</span>, <span style="color:#e6db74">&#34;内部错误&#34;</span>);
+            }
+        };
+    }
+}</code></pre></div></article>
+
+      
+<div class="book-footer justify-end">
+  
+  
+  <div>
+    <a href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Action/Error-Page.md" target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#spring-boot-错误页面">Spring Boot 错误页面</a>
+<ul>
+<li><a href="#静态错误页">静态错误页</a></li>
+<li><a href="#404-处理">404 处理</a></li>
+<li><a href="#统一异常处理">统一异常处理</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>
