@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * OoooooooooK 判断来源
@@ -28,8 +29,9 @@ public class DemoHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("HandlerInterceptor.preHandle");
-        for (Map.Entry<String, String> kv : conf.getHeaders().entrySet()) {
-            if (!Objects.equals(request.getHeader(kv.getKey()), kv.getValue())) {
+        for (Map.Entry<String, Pattern> kv : conf.getHeaders().entrySet()) {
+            String header = request.getHeader(kv.getKey());
+            if (null == header || !kv.getValue().matcher(header).matches()) {
                 response.setHeader("XX-Status-Code", "3099123");
                 response.setCharacterEncoding(StandardCharsets.UTF_8.displayName());
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
