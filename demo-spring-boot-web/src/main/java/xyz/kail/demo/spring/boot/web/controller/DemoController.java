@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.kail.demo.spring.boot.web.model.WebResult;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 @RestController
 @RequestMapping("/demo")
 public class DemoController {
@@ -24,6 +27,14 @@ public class DemoController {
         Assert.isTrue(false, "出错了");
 
         return WebResult.success("error");
+    }
+
+    /**
+     * @see org.springframework.http.HttpStatus
+     */
+    @RequestMapping("/empty")
+    public String empty() {
+        return "";
     }
 
 }
