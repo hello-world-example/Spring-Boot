@@ -4,15 +4,28 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="热部署    “How-to” Guides &gt; 15. Hot Swapping
+  Using Spring Boot &gt; 8. Developer Tools
+   依赖 &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt; &lt;optional&gt;true&lt;/optional&gt; &lt;/dependency&gt; 默认配置 spring.freemarker.cache=false spring.devtools.restart.poll-interval=1s spring.devtools.restart.quiet-period=400ms spring.devtools.restart.exclude=META-INF/maven/**,META-INF/resources/**,resources/**,static/**,public/**,templates/**,**/*Test.class,**/*Tests.class,git.properties,META-INF/build-info.properties # 根据指定的文件触发 spring.devtools.restart.trigger-file= spring.devtools.livereload.enabled=true IDEA 设置 devtools 是检查 classpath（编译后的文件、target 目录） 下文件变化，所以修改文件后需要手动或者自动重新编译。
+IDEA 手动编译比较简单，右键修改的文件选择 “Build Module xxx” 或 “Recompile xxx” 即可。
+自动编译设置比较复杂，步骤如下
+ 双击 Shift， 搜索 Maintenance 回车 选择 Registry... 找到 compiler.automake.allow.when.app.running， 进行勾选  LiveReload LiveReload 是个自动刷线页面的工具，如果内容有变化会自动刷新页面。
+Spring Boot 启动时默认暴露 LiveReload 端口，可以在启动日志中找到"><meta property="og:title" content="" />
+<meta property="og:description" content="热部署    “How-to” Guides &gt; 15. Hot Swapping
+  Using Spring Boot &gt; 8. Developer Tools
+   依赖 &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt; &lt;optional&gt;true&lt;/optional&gt; &lt;/dependency&gt; 默认配置 spring.freemarker.cache=false spring.devtools.restart.poll-interval=1s spring.devtools.restart.quiet-period=400ms spring.devtools.restart.exclude=META-INF/maven/**,META-INF/resources/**,resources/**,static/**,public/**,templates/**,**/*Test.class,**/*Tests.class,git.properties,META-INF/build-info.properties # 根据指定的文件触发 spring.devtools.restart.trigger-file= spring.devtools.livereload.enabled=true IDEA 设置 devtools 是检查 classpath（编译后的文件、target 目录） 下文件变化，所以修改文件后需要手动或者自动重新编译。
+IDEA 手动编译比较简单，右键修改的文件选择 “Build Module xxx” 或 “Recompile xxx” 即可。
+自动编译设置比较复杂，步骤如下
+ 双击 Shift， 搜索 Maintenance 回车 选择 Registry... 找到 compiler.automake.allow.when.app.running， 进行勾选  LiveReload LiveReload 是个自动刷线页面的工具，如果内容有变化会自动刷新页面。
+Spring Boot 启动时默认暴露 LiveReload 端口，可以在启动日志中找到" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Boot/docs/Action/Hot-Swapping/" />
+<meta property="article:modified_time" content="2020-01-26T23:21:59+08:00" />
 <title>Hot Swapping | Spring-Boot</title>
-
-
-<link rel="stylesheet" href="/Spring-Boot/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
-
-
-
-
 <link rel="icon" href="/Spring-Boot/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Boot/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
 
 
 <!--
@@ -24,13 +37,14 @@ https://github.com/alex-shpak/hugo-book
 </head>
 
 <body>
-  <input type="checkbox" style="display: none" id="menu-control" />
-  <main class="flex container">
-
-    <aside class="book-menu fixed">
-      <nav>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
 <h2 class="book-brand">
-  <a href="https://hello-world-example.github.io/Spring-Boot/">Spring-Boot</a>
+  <a href="/Spring-Boot"><span>Spring-Boot</span>
+  </a>
 </h2>
 
 
@@ -38,41 +52,39 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-    
-  
-  
-  
 
-  <style>
-  nav ul a[href$="\2fSpring-Boot\2f docs\2f Action\2fHot-Swapping\2f "] {
-      color: #004ed0;
-  }
-  </style>
 
-<ul>
+
+
+
+
+  <ul>
 <li><strong>Core</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Core/Main-Lifecycle/">启动过程</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Actuator</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints/">Endpoints</a></li>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints-detail/">Endpoints 详解</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Action</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Action/War-Deploy/">war 包部署</a></li>
-<li><a href="/Spring-Boot/docs/Action/Hot-Swapping/">热部署</a></li>
+<li><a href="/Spring-Boot/docs/Action/Hot-Swapping/"class=active>热部署</a></li>
 <li><a href="/Spring-Boot/docs/Action/Static-Resources/">静态资源</a></li>
 <li><a href="/Spring-Boot/docs/Action/RFC-7230_RFC-3986/">RFC 7230 and RFC 3986 错误</a></li>
 <li><a href="/Spring-Boot/docs/Action/Error-Page/">Error Page</a></li>
 <li><del><a href="/Spring-Boot/docs/Unit-Test/">Testing</a></del></li>
 <li></li>
-</ul></li>
 </ul>
+</li>
+</ul>
+
+
+
 
 
 
@@ -83,47 +95,71 @@ https://github.com/alex-shpak/hugo-book
 </nav>
 
 
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
 
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
     </aside>
 
     <div class="book-page">
-      <header class="flex align-center justify-between book-header">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="/Spring-Boot/svg/menu.svg" alt="Menu" />
+    <img src="/Spring-Boot/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
+
   <strong>Hot Swapping</strong>
-</header>
+
+  <label for="toc-control">
+    <img src="/Spring-Boot/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#依赖">依赖</a></li>
+    <li><a href="#默认配置">默认配置</a></li>
+    <li><a href="#idea-设置">IDEA 设置</a></li>
+    <li><a href="#livereload">LiveReload</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
 
       
-<article class="markdown">
-
-<h1 id="热部署">热部署</h1>
-
+      
+  <article class="markdown"><h1 id="热部署">热部署</h1>
 <blockquote>
 <ul>
-<li><p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto">“How-to” Guides</a> &gt; <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-hotswapping">15. Hot Swapping</a></p></li>
-
-<li><p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html">Using Spring Boot</a> &gt; <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html#using-boot-devtools">8. Developer Tools</a></p></li>
+<li>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto">“How-to” Guides</a> &gt; <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-hotswapping">15. Hot Swapping</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html">Using Spring Boot</a> &gt; <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html#using-boot-devtools">8. Developer Tools</a></p>
+</li>
 </ul>
 </blockquote>
-
 <h2 id="依赖">依赖</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency&gt;</span>
     <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
     <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-devtools<span style="color:#f92672">&lt;/artifactId&gt;</span>
     <span style="color:#f92672">&lt;optional&gt;</span>true<span style="color:#f92672">&lt;/optional&gt;</span>
-<span style="color:#f92672">&lt;/dependency&gt;</span></code></pre></div>
-<h2 id="默认配置">默认配置</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-properties" data-lang="properties">spring.freemarker.cache=false
+<span style="color:#f92672">&lt;/dependency&gt;</span>
+</code></pre></div><h2 id="默认配置">默认配置</h2>
+<pre><code class="language-properties" data-lang="properties">spring.freemarker.cache=false
 
 spring.devtools.restart.poll-interval=1s
 spring.devtools.restart.quiet-period=400ms
@@ -131,89 +167,116 @@ spring.devtools.restart.exclude=META-INF/maven/**,META-INF/resources/**,resource
 # 根据指定的文件触发
 spring.devtools.restart.trigger-file=
 
-spring.devtools.livereload.enabled=true</code></pre></div>
-<h2 id="idea-设置">IDEA 设置</h2>
-
+spring.devtools.livereload.enabled=true
+</code></pre><h2 id="idea-设置">IDEA 设置</h2>
 <p>devtools 是检查 classpath（编译后的文件、target 目录） 下文件变化，所以修改文件后需要手动或者自动重新编译。</p>
-
 <p>IDEA <strong>手动编译</strong>比较简单，右键修改的文件选择 <strong>“Build Module xxx”</strong> 或 <strong>“Recompile xxx”</strong> 即可。</p>
-
 <p>自动编译设置比较复杂，步骤如下</p>
-
 <ul>
 <li>双击 <strong>Shift</strong>， 搜索 <code>Maintenance</code> 回车</li>
 <li>选择 <code>Registry...</code></li>
 <li>找到 <code>compiler.automake.allow.when.app.running</code>， 进行勾选</li>
 </ul>
-
 <h2 id="livereload">LiveReload</h2>
-
 <p>LiveReload 是个自动刷线页面的工具，如果内容有变化会自动刷新页面。</p>
-
 <p>Spring Boot 启动时默认暴露 LiveReload 端口，可以在启动日志中找到</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">...
 ... o.s.b.d.a.OptionalLiveReloadServer: LiveReload server is running on port <span style="color:#ae81ff">35729</span>
-...</code></pre></div>
-<p>通过安装 Chrome 插件获取，插件市场搜索 <code>LiveReload</code> 即可（好久没更新了），或者访问 <a href="https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei">此链接</a>。</p>
-
+...
+</code></pre></div><p>通过安装 Chrome 插件获取，插件市场搜索 <code>LiveReload</code> 即可（好久没更新了），或者访问 <a href="https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei">此链接</a>。</p>
 <p>安装后插件按钮默认是 空心的，点击变成 实心 打开 LiveReload，可以从 Chrome 调试控制台查看 LiveReload 建立的 Websocket 链接。</p>
-
 <h2 id="read-more">Read More</h2>
-
 <ul>
 <li><a href="https://blog.csdn.net/isea533/article/details/70495714">Spring DevTools 介绍</a></li>
 <li><a href="https://www.cnblogs.com/yjmyzz/p/use-devtools-of-spring-boot-framework.html">spring-boot 速成(2) devtools之热部署及LiveReload</a></li>
 <li><a href="https://dzone.com/articles/spring-boot-developer-tools-and-live-reload">Spring Boot Developer Tools and LiveReload</a></li>
 </ul>
 </article>
-
+ 
       
-<div class="book-footer justify-between">
-  
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
   <div>
     
-    <a href="https://github.com/hello-world-example/Spring-Boot/commit/5f1e8b64432097dda4e994babf9b0d2dfd4f5614" title='Last modified Jan 26, 2020 by kailbin' target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/calendar.svg" alt="Changed" /> Jan 26, 2020
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/commit/5f1e8b64432097dda4e994babf9b0d2dfd4f5614" title='Last modified by kailbin | Jan 26, 2020' target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>Jan 26, 2020</span>
     </a>
   </div>
-  
-  
+
+
+
   <div>
-    <a href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Action/Hot-Swapping.md" target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/edit.svg" alt="Edit" /> Edit this page
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Action/Hot-Swapping.md" target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
     </a>
   </div>
-  
+
 </div>
 
+ 
+        <script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
 
       
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
     </div>
 
     
-  
-
-  <aside class="book-toc level-3 fixed">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#热部署">热部署</a>
-<ul>
-<li><a href="#依赖">依赖</a></li>
-<li><a href="#默认配置">默认配置</a></li>
-<li><a href="#idea-设置">IDEA 设置</a></li>
-<li><a href="#livereload">LiveReload</a></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#依赖">依赖</a></li>
+    <li><a href="#默认配置">默认配置</a></li>
+    <li><a href="#idea-设置">IDEA 设置</a></li>
+    <li><a href="#livereload">LiveReload</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
-  </aside>
 
-
-
+ 
+    </aside>
+    
   </main>
-  
-  
+
   
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

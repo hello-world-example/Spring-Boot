@@ -4,15 +4,16 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="main 方法启动过程 SpringApplication 构造方法 public SpringApplication(ResourceLoader resourceLoader, Class&lt;?&gt;... primarySources) { ... // 通过 SpringFactories 方式获取 ApplicationContextInitializer  // 允许在 ApplicationContext refresh 之前，对其实例做进一步的设置和处理  setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class)); // 通过 SpringFactories 方式获取 ApplicationListener 的实现，接收事件  setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class)); // 获取启动的类  this.mainApplicationClass = deduceMainApplicationClass(); } private Class&lt;?&gt; deduceMainApplicationClass() { ... StackTraceElement[] stackTrace = new RuntimeException().getStackTrace(); for (StackTraceElement stackTraceElement : stackTrace) { // 遍历调用栈，获取第一个 main 方法  if (&#34;main&#34;.equals(stackTraceElement.getMethodName())) { return Class.forName(stackTraceElement.getClassName()); } } ... } run 方法 public ConfigurableApplicationContext run(String."><meta property="og:title" content="" />
+<meta property="og:description" content="main 方法启动过程 SpringApplication 构造方法 public SpringApplication(ResourceLoader resourceLoader, Class&lt;?&gt;... primarySources) { ... // 通过 SpringFactories 方式获取 ApplicationContextInitializer  // 允许在 ApplicationContext refresh 之前，对其实例做进一步的设置和处理  setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class)); // 通过 SpringFactories 方式获取 ApplicationListener 的实现，接收事件  setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class)); // 获取启动的类  this.mainApplicationClass = deduceMainApplicationClass(); } private Class&lt;?&gt; deduceMainApplicationClass() { ... StackTraceElement[] stackTrace = new RuntimeException().getStackTrace(); for (StackTraceElement stackTraceElement : stackTrace) { // 遍历调用栈，获取第一个 main 方法  if (&#34;main&#34;.equals(stackTraceElement.getMethodName())) { return Class.forName(stackTraceElement.getClassName()); } } ... } run 方法 public ConfigurableApplicationContext run(String." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Boot/docs/Core/Main-Lifecycle/" />
+<meta property="article:modified_time" content="2020-01-27T23:36:25+08:00" />
 <title>Main Lifecycle | Spring-Boot</title>
-
-
-<link rel="stylesheet" href="/Spring-Boot/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
-
-
-
-
 <link rel="icon" href="/Spring-Boot/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Boot/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
 
 
 <!--
@@ -24,13 +25,14 @@ https://github.com/alex-shpak/hugo-book
 </head>
 
 <body>
-  <input type="checkbox" style="display: none" id="menu-control" />
-  <main class="flex container">
-
-    <aside class="book-menu fixed">
-      <nav>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
 <h2 class="book-brand">
-  <a href="https://hello-world-example.github.io/Spring-Boot/">Spring-Boot</a>
+  <a href="/Spring-Boot"><span>Spring-Boot</span>
+  </a>
 </h2>
 
 
@@ -38,31 +40,25 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-    
-  
-  
-  
 
-  <style>
-  nav ul a[href$="\2fSpring-Boot\2f docs\2f Core\2fMain-Lifecycle\2f "] {
-      color: #004ed0;
-  }
-  </style>
 
-<ul>
+
+
+
+
+  <ul>
 <li><strong>Core</strong>
-
 <ul>
-<li><a href="/Spring-Boot/docs/Core/Main-Lifecycle/">启动过程</a></li>
-</ul></li>
+<li><a href="/Spring-Boot/docs/Core/Main-Lifecycle/"class=active>启动过程</a></li>
+</ul>
+</li>
 <li><strong>Actuator</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints/">Endpoints</a></li>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints-detail/">Endpoints 详解</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Action</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Action/War-Deploy/">war 包部署</a></li>
 <li><a href="/Spring-Boot/docs/Action/Hot-Swapping/">热部署</a></li>
@@ -71,8 +67,12 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Spring-Boot/docs/Action/Error-Page/">Error Page</a></li>
 <li><del><a href="/Spring-Boot/docs/Unit-Test/">Testing</a></del></li>
 <li></li>
-</ul></li>
 </ul>
+</li>
+</ul>
+
+
+
 
 
 
@@ -83,74 +83,95 @@ https://github.com/alex-shpak/hugo-book
 </nav>
 
 
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
 
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
     </aside>
 
     <div class="book-page">
-      <header class="flex align-center justify-between book-header">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="/Spring-Boot/svg/menu.svg" alt="Menu" />
+    <img src="/Spring-Boot/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
+
   <strong>Main Lifecycle</strong>
-</header>
+
+  <label for="toc-control">
+    <img src="/Spring-Boot/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#springapplication-构造方法">SpringApplication 构造方法</a></li>
+    <li><a href="#run-方法">run 方法</a></li>
+    <li><a href="#springbootservletinitializer-方式">SpringBootServletInitializer 方式</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
 
       
-<article class="markdown">
-
-<h1 id="main-方法启动过程">main 方法启动过程</h1>
-
+      
+  <article class="markdown"><h1 id="main-方法启动过程">main 方法启动过程</h1>
 <h2 id="springapplication-构造方法">SpringApplication 构造方法</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SpringApplication</span>(ResourceLoader <span style="color:#a6e22e">resourceLoader</span>, Class<span style="color:#f92672">&lt;?&gt;</span>... primarySources) {
-    ...
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SpringApplication</span><span style="color:#f92672">(</span>ResourceLoader resourceLoader<span style="color:#f92672">,</span> Class<span style="color:#f92672">&lt;?&gt;...</span> primarySources<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">...</span>
     <span style="color:#75715e">// 通过 SpringFactories 方式获取 ApplicationContextInitializer
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 允许在 ApplicationContext refresh 之前，对其实例做进一步的设置和处理
-</span><span style="color:#75715e"></span>    setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.<span style="color:#a6e22e">class</span>));
+</span><span style="color:#75715e"></span>    setInitializers<span style="color:#f92672">((</span>Collection<span style="color:#f92672">)</span> getSpringFactoriesInstances<span style="color:#f92672">(</span>ApplicationContextInitializer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">));</span>
     <span style="color:#75715e">// 通过 SpringFactories 方式获取 ApplicationListener 的实现，接收事件
-</span><span style="color:#75715e"></span>    setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.<span style="color:#a6e22e">class</span>));
+</span><span style="color:#75715e"></span>    setListeners<span style="color:#f92672">((</span>Collection<span style="color:#f92672">)</span> getSpringFactoriesInstances<span style="color:#f92672">(</span>ApplicationListener<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">));</span>
     <span style="color:#75715e">// 获取启动的类
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">mainApplicationClass</span> <span style="color:#f92672">=</span> deduceMainApplicationClass();
-}
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mainApplicationClass</span> <span style="color:#f92672">=</span> deduceMainApplicationClass<span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
 
-<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Class</span><span style="color:#f92672">&lt;?&gt;</span> deduceMainApplicationClass() {
-    ...
-    StackTraceElement[] <span style="color:#a6e22e">stackTrace</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RuntimeException().<span style="color:#a6e22e">getStackTrace</span>();
-    <span style="color:#66d9ef">for</span> (StackTraceElement <span style="color:#a6e22e">stackTraceElement</span> <span style="color:#f92672">:</span> stackTrace) {
+<span style="color:#66d9ef">private</span> Class<span style="color:#f92672">&lt;?&gt;</span> deduceMainApplicationClass<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">...</span>
+    StackTraceElement<span style="color:#f92672">[]</span> stackTrace <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RuntimeException<span style="color:#f92672">().</span><span style="color:#a6e22e">getStackTrace</span><span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>StackTraceElement stackTraceElement <span style="color:#f92672">:</span> stackTrace<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
       <span style="color:#75715e">// 遍历调用栈，获取第一个 main 方法
-</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#34;main&#34;</span>.<span style="color:#a6e22e">equals</span>(stackTraceElement.<span style="color:#a6e22e">getMethodName</span>())) {
-        <span style="color:#66d9ef">return</span> Class.<span style="color:#a6e22e">forName</span>(stackTraceElement.<span style="color:#a6e22e">getClassName</span>());
-      }
-    }
-    ...
-}</code></pre></div>
-<h2 id="run-方法">run 方法</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ConfigurableApplicationContext</span> run(String... <span style="color:#a6e22e">args</span>) {
-  ...
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#e6db74">&#34;main&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>stackTraceElement<span style="color:#f92672">.</span><span style="color:#a6e22e">getMethodName</span><span style="color:#f92672">()))</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span>stackTraceElement<span style="color:#f92672">.</span><span style="color:#a6e22e">getClassName</span><span style="color:#f92672">());</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#f92672">...</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="run-方法">run 方法</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> ConfigurableApplicationContext <span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>String<span style="color:#f92672">...</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#f92672">...</span>
   <span style="color:#75715e">// SpringFactories 方式获取 SpringApplicationRunListener
 </span><span style="color:#75715e"></span>  <span style="color:#75715e">// ❤❤❤ 实现必须包含构造函数 public Xxx(SpringApplication application, String[] args)
-</span><span style="color:#75715e"></span>  SpringApplicationRunListeners <span style="color:#a6e22e">listeners</span> <span style="color:#f92672">=</span> getRunListeners(args);
+</span><span style="color:#75715e"></span>  SpringApplicationRunListeners listeners <span style="color:#f92672">=</span> getRunListeners<span style="color:#f92672">(</span>args<span style="color:#f92672">);</span>
   
   <span style="color:#75715e">// 调用 SpringApplicationRunListener 的 starting 方法
 </span><span style="color:#75715e"></span>  <span style="color:#75715e">// EventPublishingRunListener 发布 ApplicationStartingEvent 事件
-</span><span style="color:#75715e"></span>  listeners.<span style="color:#a6e22e">starting</span>();
-  <span style="color:#66d9ef">try</span> {
-    ApplicationArguments <span style="color:#a6e22e">applicationArguments</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DefaultApplicationArguments(args);
+</span><span style="color:#75715e"></span>  listeners<span style="color:#f92672">.</span><span style="color:#a6e22e">starting</span><span style="color:#f92672">();</span>
+  <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+    ApplicationArguments applicationArguments <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DefaultApplicationArguments<span style="color:#f92672">(</span>args<span style="color:#f92672">);</span>
     <span style="color:#75715e">// 调用 SpringApplicationRunListener 的 environmentPrepared 方法
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// EventPublishingRunListener 发布 ApplicationEnvironmentPreparedEvent 事件
-</span><span style="color:#75715e"></span>    ConfigurableEnvironment <span style="color:#a6e22e">environment</span> <span style="color:#f92672">=</span> prepareEnvironment(listeners, applicationArguments);
-    configureIgnoreBeanInfo(environment);
+</span><span style="color:#75715e"></span>    ConfigurableEnvironment environment <span style="color:#f92672">=</span> prepareEnvironment<span style="color:#f92672">(</span>listeners<span style="color:#f92672">,</span> applicationArguments<span style="color:#f92672">);</span>
+    configureIgnoreBeanInfo<span style="color:#f92672">(</span>environment<span style="color:#f92672">);</span>
     <span style="color:#75715e">// 
-</span><span style="color:#75715e"></span>    Banner <span style="color:#a6e22e">printedBanner</span> <span style="color:#f92672">=</span> printBanner(environment);
-    context <span style="color:#f92672">=</span> createApplicationContext();
-    exceptionReporters <span style="color:#f92672">=</span> getSpringFactoriesInstances(SpringBootExceptionReporter.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">new</span> Class[] { ConfigurableApplicationContext.<span style="color:#a6e22e">class</span> }, context);
+</span><span style="color:#75715e"></span>    Banner printedBanner <span style="color:#f92672">=</span> printBanner<span style="color:#f92672">(</span>environment<span style="color:#f92672">);</span>
+    context <span style="color:#f92672">=</span> createApplicationContext<span style="color:#f92672">();</span>
+    exceptionReporters <span style="color:#f92672">=</span> getSpringFactoriesInstances<span style="color:#f92672">(</span>SpringBootExceptionReporter<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]</span> <span style="color:#f92672">{</span> ConfigurableApplicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span> <span style="color:#f92672">},</span> context<span style="color:#f92672">);</span>
     <span style="color:#75715e">// ❤❤❤ 调用 ApplicationContextInitializer#initialize(context)
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 调用 SpringApplicationRunListener 的 contextPrepared  方法
@@ -158,75 +179,75 @@ https://github.com/alex-shpak/hugo-book
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 调用 SpringApplicationRunListener 的 contextLoaded  方法
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// EventPublishingRunListener 发布 ApplicationPreparedEvent 事件
-</span><span style="color:#75715e"></span>    prepareContext(context, environment, listeners, applicationArguments, printedBanner);
-    refreshContext(context);
-    afterRefresh(context, applicationArguments);
+</span><span style="color:#75715e"></span>    prepareContext<span style="color:#f92672">(</span>context<span style="color:#f92672">,</span> environment<span style="color:#f92672">,</span> listeners<span style="color:#f92672">,</span> applicationArguments<span style="color:#f92672">,</span> printedBanner<span style="color:#f92672">);</span>
+    refreshContext<span style="color:#f92672">(</span>context<span style="color:#f92672">);</span>
+    afterRefresh<span style="color:#f92672">(</span>context<span style="color:#f92672">,</span> applicationArguments<span style="color:#f92672">);</span>
 
-    ...
+    <span style="color:#f92672">...</span>
       
     <span style="color:#75715e">// 调用 SpringApplicationRunListener 的 started  方法
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// EventPublishingRunListener 发布 ApplicationStartedEvent 事件
-</span><span style="color:#75715e"></span>    listeners.<span style="color:#a6e22e">started</span>(context);
+</span><span style="color:#75715e"></span>    listeners<span style="color:#f92672">.</span><span style="color:#a6e22e">started</span><span style="color:#f92672">(</span>context<span style="color:#f92672">);</span>
     
     <span style="color:#75715e">// ❤❤❤ 从 context 中获取 ApplicationRunner 和 CommandLineRunner，并调用 ❤❤❤
-</span><span style="color:#75715e"></span>    callRunners(context, applicationArguments);
-  }
-  <span style="color:#66d9ef">catch</span> (Throwable <span style="color:#a6e22e">ex</span>) {
+</span><span style="color:#75715e"></span>    callRunners<span style="color:#f92672">(</span>context<span style="color:#f92672">,</span> applicationArguments<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Throwable ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">// 调用 SpringApplicationRunListener 的 failed  方法
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// EventPublishingRunListener 发布 ApplicationFailedEvent 事件
-</span><span style="color:#75715e"></span>    handleRunFailure(context, ex, exceptionReporters, listeners);
-    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException(ex);
-  }
+</span><span style="color:#75715e"></span>    handleRunFailure<span style="color:#f92672">(</span>context<span style="color:#f92672">,</span> ex<span style="color:#f92672">,</span> exceptionReporters<span style="color:#f92672">,</span> listeners<span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span>ex<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
 
-  <span style="color:#66d9ef">try</span> {
+  <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">// 调用 SpringApplicationRunListener 的 running  方法
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// EventPublishingRunListener 发布 ApplicationReadyEvent 事件
-</span><span style="color:#75715e"></span>    listeners.<span style="color:#a6e22e">running</span>(context);
-  }
-  <span style="color:#66d9ef">catch</span> (Throwable <span style="color:#a6e22e">ex</span>) {
+</span><span style="color:#75715e"></span>    listeners<span style="color:#f92672">.</span><span style="color:#a6e22e">running</span><span style="color:#f92672">(</span>context<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Throwable ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">// 调用 SpringApplicationRunListener 的 failed  方法
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// EventPublishingRunListener 发布 ApplicationFailedEvent 事件
-</span><span style="color:#75715e"></span>    handleRunFailure(context, ex, exceptionReporters, <span style="color:#66d9ef">null</span>);
-    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException(ex);
-  }
-  <span style="color:#66d9ef">return</span> context;
-}</code></pre></div>
-<h2 id="springbootservletinitializer-方式">SpringBootServletInitializer 方式</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> <span style="color:#a6e22e">org</span>.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span>.<span style="color:#a6e22e">web</span>.<span style="color:#a6e22e">servlet</span>.<span style="color:#a6e22e">support</span>;
-...
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringBootServletInitializer</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">WebApplicationInitializer</span> {
-  ...
+</span><span style="color:#75715e"></span>    handleRunFailure<span style="color:#f92672">(</span>context<span style="color:#f92672">,</span> ex<span style="color:#f92672">,</span> exceptionReporters<span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span>ex<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">return</span> context<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="springbootservletinitializer-方式">SpringBootServletInitializer 方式</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.springframework.boot.web.servlet.support<span style="color:#f92672">;</span>
+<span style="color:#f92672">...</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringBootServletInitializer</span> <span style="color:#66d9ef">implements</span> WebApplicationInitializer <span style="color:#f92672">{</span>
+  <span style="color:#f92672">...</span>
     
 	<span style="color:#a6e22e">@Override</span>
-	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">void</span> onStartup(ServletContext <span style="color:#a6e22e">servletContext</span>) <span style="color:#66d9ef">throws</span> <span style="color:#a6e22e">ServletException</span> {
-		...
-		WebApplicationContext <span style="color:#a6e22e">rootAppContext</span> <span style="color:#f92672">=</span> createRootApplicationContext(servletContext);
-		...
-	}
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>ServletContext servletContext<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException <span style="color:#f92672">{</span>
+		<span style="color:#f92672">...</span>
+		WebApplicationContext rootAppContext <span style="color:#f92672">=</span> createRootApplicationContext<span style="color:#f92672">(</span>servletContext<span style="color:#f92672">);</span>
+		<span style="color:#f92672">...</span>
+	<span style="color:#f92672">}</span>
 
-	<span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">WebApplicationContext</span> createRootApplicationContext(ServletContext <span style="color:#a6e22e">servletContext</span>) {
+	<span style="color:#66d9ef">protected</span> WebApplicationContext <span style="color:#a6e22e">createRootApplicationContext</span><span style="color:#f92672">(</span>ServletContext servletContext<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">// SpringApplication 构建器，设置默认配置
-</span><span style="color:#75715e"></span>		SpringApplicationBuilder <span style="color:#a6e22e">builder</span> <span style="color:#f92672">=</span> createSpringApplicationBuilder();
-		builder.<span style="color:#a6e22e">main</span>(getClass());
-		...
-		builder.<span style="color:#a6e22e">initializers</span>(<span style="color:#66d9ef">new</span> ServletContextApplicationContextInitializer(servletContext));
-		builder.<span style="color:#a6e22e">contextClass</span>(AnnotationConfigServletWebServerApplicationContext.<span style="color:#a6e22e">class</span>);
+</span><span style="color:#75715e"></span>		SpringApplicationBuilder builder <span style="color:#f92672">=</span> createSpringApplicationBuilder<span style="color:#f92672">();</span>
+		builder<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>getClass<span style="color:#f92672">());</span>
+		<span style="color:#f92672">...</span>
+		builder<span style="color:#f92672">.</span><span style="color:#a6e22e">initializers</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ServletContextApplicationContextInitializer<span style="color:#f92672">(</span>servletContext<span style="color:#f92672">));</span>
+		builder<span style="color:#f92672">.</span><span style="color:#a6e22e">contextClass</span><span style="color:#f92672">(</span>AnnotationConfigServletWebServerApplicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
     
     <span style="color:#75715e">// ❤❤❤ 自定义扩展配置
-</span><span style="color:#75715e"></span>		builder <span style="color:#f92672">=</span> configure(builder);
+</span><span style="color:#75715e"></span>		builder <span style="color:#f92672">=</span> configure<span style="color:#f92672">(</span>builder<span style="color:#f92672">);</span>
     
-		builder.<span style="color:#a6e22e">listeners</span>(<span style="color:#66d9ef">new</span> WebEnvironmentPropertySourceInitializer(servletContext));
-		SpringApplication <span style="color:#a6e22e">application</span> <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">build</span>();
-		...
+		builder<span style="color:#f92672">.</span><span style="color:#a6e22e">listeners</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> WebEnvironmentPropertySourceInitializer<span style="color:#f92672">(</span>servletContext<span style="color:#f92672">));</span>
+		SpringApplication application <span style="color:#f92672">=</span> builder<span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+		<span style="color:#f92672">...</span>
 		<span style="color:#75715e">// Ensure error pages are registered
-</span><span style="color:#75715e"></span>		...
+</span><span style="color:#75715e"></span>		<span style="color:#f92672">...</span>
     <span style="color:#75715e">// 调用 SpringApplication#run
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> run(application);
-	}
-	...
-}</code></pre></div>
-<h2 id="read-more">Read More</h2>
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> run<span style="color:#f92672">(</span>application<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#f92672">...</span>
+<span style="color:#f92672">}</span>
 
+</code></pre></div><h2 id="read-more">Read More</h2>
 <ul>
 <li><strong><a href="https://blog.csdn.net/Dlxi12345/article/details/93518342">聊聊 Spring Boot 中的那些生命周期和其中的可扩展点</a></strong></li>
 <li></li>
@@ -234,53 +255,90 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="https://www.cnblogs.com/hello-shf/p/10987360.html">SpringBoot之ApplicationContextInitializer的理解和使用</a></li>
 </ul>
 </article>
-
+ 
       
-<div class="book-footer justify-between">
-  
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
   <div>
     
-    <a href="https://github.com/hello-world-example/Spring-Boot/commit/94dfc53db1e45602baecb6646322a477fd2e1eca" title='Last modified Jan 27, 2020 by kailbin' target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/calendar.svg" alt="Changed" /> Jan 27, 2020
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/commit/94dfc53db1e45602baecb6646322a477fd2e1eca" title='Last modified by kailbin | Jan 27, 2020' target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>Jan 27, 2020</span>
     </a>
   </div>
-  
-  
+
+
+
   <div>
-    <a href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Core/Main-Lifecycle.md" target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/edit.svg" alt="Edit" /> Edit this page
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Core/Main-Lifecycle.md" target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
     </a>
   </div>
-  
+
 </div>
 
+ 
+        <script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
 
       
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
     </div>
 
     
-  
-
-  <aside class="book-toc level-3 fixed">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#main-方法启动过程">main 方法启动过程</a>
-<ul>
-<li><a href="#springapplication-构造方法">SpringApplication 构造方法</a></li>
-<li><a href="#run-方法">run 方法</a></li>
-<li><a href="#springbootservletinitializer-方式">SpringBootServletInitializer 方式</a></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#springapplication-构造方法">SpringApplication 构造方法</a></li>
+    <li><a href="#run-方法">run 方法</a></li>
+    <li><a href="#springbootservletinitializer-方式">SpringBootServletInitializer 方式</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
-  </aside>
 
-
-
+ 
+    </aside>
+    
   </main>
-  
-  
+
   
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

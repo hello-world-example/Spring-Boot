@@ -4,15 +4,20 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="War 包部署 pom packaging &lt;packaging&gt;war&lt;/packaging&gt; 继承 SpringBootServletInitializer /** * 需要继承 SpringBootServletInitializer */ @SpringBootApplication public class Application extends SpringBootServletInitializer { public static void main(String[] args) { Application.run(LifecycleApplication.class, args); } @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) { return builder.sources(Application.class); } } 原理    Java™ Servlet 3.1 Specification &gt; 8.2.4 Shared libraries / runtimes pluggability
+  Java™ Servlet 3.1 规范 &gt; 8.2.4 共享库 / 运行时可插拔性
+    javax.servlet.ServletContainerInitializer  spring-web : org."><meta property="og:title" content="" />
+<meta property="og:description" content="War 包部署 pom packaging &lt;packaging&gt;war&lt;/packaging&gt; 继承 SpringBootServletInitializer /** * 需要继承 SpringBootServletInitializer */ @SpringBootApplication public class Application extends SpringBootServletInitializer { public static void main(String[] args) { Application.run(LifecycleApplication.class, args); } @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) { return builder.sources(Application.class); } } 原理    Java™ Servlet 3.1 Specification &gt; 8.2.4 Shared libraries / runtimes pluggability
+  Java™ Servlet 3.1 规范 &gt; 8.2.4 共享库 / 运行时可插拔性
+    javax.servlet.ServletContainerInitializer  spring-web : org." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Boot/docs/Action/War-Deploy/" />
+<meta property="article:modified_time" content="2020-01-27T21:37:11+08:00" />
 <title>War Deploy | Spring-Boot</title>
-
-
-<link rel="stylesheet" href="/Spring-Boot/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
-
-
-
-
 <link rel="icon" href="/Spring-Boot/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Boot/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
 
 
 <!--
@@ -24,13 +29,14 @@ https://github.com/alex-shpak/hugo-book
 </head>
 
 <body>
-  <input type="checkbox" style="display: none" id="menu-control" />
-  <main class="flex container">
-
-    <aside class="book-menu fixed">
-      <nav>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
 <h2 class="book-brand">
-  <a href="https://hello-world-example.github.io/Spring-Boot/">Spring-Boot</a>
+  <a href="/Spring-Boot"><span>Spring-Boot</span>
+  </a>
 </h2>
 
 
@@ -38,41 +44,39 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-    
-  
-  
-  
 
-  <style>
-  nav ul a[href$="\2fSpring-Boot\2f docs\2f Action\2fWar-Deploy\2f "] {
-      color: #004ed0;
-  }
-  </style>
 
-<ul>
+
+
+
+
+  <ul>
 <li><strong>Core</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Core/Main-Lifecycle/">启动过程</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Actuator</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints/">Endpoints</a></li>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints-detail/">Endpoints 详解</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Action</strong>
-
 <ul>
-<li><a href="/Spring-Boot/docs/Action/War-Deploy/">war 包部署</a></li>
+<li><a href="/Spring-Boot/docs/Action/War-Deploy/"class=active>war 包部署</a></li>
 <li><a href="/Spring-Boot/docs/Action/Hot-Swapping/">热部署</a></li>
 <li><a href="/Spring-Boot/docs/Action/Static-Resources/">静态资源</a></li>
 <li><a href="/Spring-Boot/docs/Action/RFC-7230_RFC-3986/">RFC 7230 and RFC 3986 错误</a></li>
 <li><a href="/Spring-Boot/docs/Action/Error-Page/">Error Page</a></li>
 <li><del><a href="/Spring-Boot/docs/Unit-Test/">Testing</a></del></li>
 <li></li>
-</ul></li>
 </ul>
+</li>
+</ul>
+
+
+
 
 
 
@@ -83,154 +87,209 @@ https://github.com/alex-shpak/hugo-book
 </nav>
 
 
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
 
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
     </aside>
 
     <div class="book-page">
-      <header class="flex align-center justify-between book-header">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="/Spring-Boot/svg/menu.svg" alt="Menu" />
+    <img src="/Spring-Boot/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
+
   <strong>War Deploy</strong>
-</header>
+
+  <label for="toc-control">
+    <img src="/Spring-Boot/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#pom-packaging">pom packaging</a></li>
+    <li><a href="#继承-springbootservletinitializer">继承 SpringBootServletInitializer</a></li>
+    <li><a href="#原理">原理</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
 
       
-<article class="markdown">
-
-<h1 id="war-包部署">War 包部署</h1>
-
+      
+  <article class="markdown"><h1 id="war-包部署">War 包部署</h1>
 <h2 id="pom-packaging">pom packaging</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;packaging&gt;</span>war<span style="color:#f92672">&lt;/packaging&gt;</span></code></pre></div>
-<h2 id="继承-springbootservletinitializer">继承 SpringBootServletInitializer</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;packaging&gt;</span>war<span style="color:#f92672">&lt;/packaging&gt;</span>
+</code></pre></div><h2 id="继承-springbootservletinitializer">继承 SpringBootServletInitializer</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
 </span><span style="color:#75715e"> * 需要继承 SpringBootServletInitializer
 </span><span style="color:#75715e"> */</span>
 <span style="color:#a6e22e">@SpringBootApplication</span>
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> Application <span style="color:#a6e22e">extends</span> SpringBootServletInitializer {
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Application</span> <span style="color:#66d9ef">extends</span> SpringBootServletInitializer <span style="color:#f92672">{</span>
 
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String[] <span style="color:#a6e22e">args</span>) {
-        Application.<span style="color:#a6e22e">run</span>(LifecycleApplication.<span style="color:#a6e22e">class</span>, args);
-    }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Application<span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>LifecycleApplication<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> args<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 
     <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">SpringApplicationBuilder</span> configure(SpringApplicationBuilder <span style="color:#a6e22e">builder</span>) {
-        <span style="color:#66d9ef">return</span> builder.<span style="color:#a6e22e">sources</span>(Application.<span style="color:#a6e22e">class</span>);
-    }
-}</code></pre></div>
-<h2 id="原理">原理</h2>
-
+    <span style="color:#66d9ef">protected</span> SpringApplicationBuilder <span style="color:#a6e22e">configure</span><span style="color:#f92672">(</span>SpringApplicationBuilder builder<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> builder<span style="color:#f92672">.</span><span style="color:#a6e22e">sources</span><span style="color:#f92672">(</span>Application<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="原理">原理</h2>
 <blockquote>
 <ul>
-<li><p><a href="https://javaee.github.io/servlet-spec/downloads/servlet-3.1/Final/servlet-3_1-final.pdf">Java™ Servlet 3.1 Specification</a> &gt; 8.2.4 Shared libraries / runtimes pluggability</p></li>
-
-<li><p><a href="http://zhanjindong.com/assets/pdf/Servlet3.1-Specification.pdf">Java™ Servlet 3.1 规范</a> &gt; 8.2.4 共享库 / 运行时可插拔性</p></li>
+<li>
+<p><a href="https://javaee.github.io/servlet-spec/downloads/servlet-3.1/Final/servlet-3_1-final.pdf">Java™ Servlet 3.1 Specification</a> &gt; 8.2.4 Shared libraries / runtimes pluggability</p>
+</li>
+<li>
+<p><a href="http://zhanjindong.com/assets/pdf/Servlet3.1-Specification.pdf">Java™ Servlet 3.1 规范</a> &gt; 8.2.4 共享库 / 运行时可插拔性</p>
+</li>
 </ul>
 </blockquote>
-
 <ul>
 <li><code>javax.servlet.ServletContainerInitializer</code>
-
 <ul>
 <li><code>spring-web</code> : <code>org.springframework.web.SpringServletContainerInitializer</code></li>
-</ul></li>
 </ul>
-
-<hr />
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@HandlesTypes</span>(WebApplicationInitializer.<span style="color:#a6e22e">class</span>)
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> SpringServletContainerInitializer <span style="color:#a6e22e">implements</span> ServletContainerInitializer {
+</li>
+</ul>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@HandlesTypes</span><span style="color:#f92672">(</span>WebApplicationInitializer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringServletContainerInitializer</span> <span style="color:#66d9ef">implements</span> ServletContainerInitializer <span style="color:#f92672">{</span>
 
 	<span style="color:#a6e22e">@Override</span>
-	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">void</span> onStartup(<span style="color:#a6e22e">@Nullable</span> Set<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;&gt;</span> webAppInitializerClasses, ServletContext <span style="color:#a6e22e">servletContext</span>) <span style="color:#66d9ef">throws</span> <span style="color:#a6e22e">ServletException</span> {
-		...
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Nullable</span> Set<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;&gt;</span> webAppInitializerClasses<span style="color:#f92672">,</span> ServletContext servletContext<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException <span style="color:#f92672">{</span>
+		<span style="color:#f92672">...</span>
   
-		AnnotationAwareOrderComparator.<span style="color:#a6e22e">sort</span>(initializers);
-		<span style="color:#66d9ef">for</span> (WebApplicationInitializer <span style="color:#a6e22e">initializer</span> <span style="color:#f92672">:</span> initializers) {
-			initializer.<span style="color:#a6e22e">onStartup</span>(servletContext);
-		}
-	}
+		AnnotationAwareOrderComparator<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>initializers<span style="color:#f92672">);</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>WebApplicationInitializer initializer <span style="color:#f92672">:</span> initializers<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+			initializer<span style="color:#f92672">.</span><span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>servletContext<span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
 
-}</code></pre></div>
-<hr />
-
+<span style="color:#f92672">}</span>
+</code></pre></div><hr>
 <ul>
 <li><code>spring-web</code> : <code>org.springframework.web.WebApplicationInitializer</code>
-
 <ul>
 <li><code>spring-boot</code> : <code>SpringBootServletInitializer</code></li>
 <li><code>spring-web</code> : <code>AbstractContextLoaderInitializer</code>
-
 <ul>
-<li><code>spring-webmvc</code> : <code>AbstractDispatcherServletInitializer</code>
-
+<li><code>spring-webmvc</code> : <code>AbstractDispatcherServletInitializer </code>
 <ul>
 <li><code>spring-webmvc</code> : <code>AbstractAnnotationConfigDispatcherServletInitializer</code></li>
-</ul></li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="read-more">Read More</h2>
-
 <ul>
 <li><a href="https://www.iteye.com/blog/jinnianshilongnian-1750736">Servlet3.1规范翻译——注解和可插拔性</a></li>
 </ul>
 </article>
-
+ 
       
-<div class="book-footer justify-between">
-  
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
   <div>
     
-    <a href="https://github.com/hello-world-example/Spring-Boot/commit/2e5fd07ce4be38e356cfe1d66c4c366706bf6de6" title='Last modified Jan 27, 2020 by kailbin' target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/calendar.svg" alt="Changed" /> Jan 27, 2020
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/commit/2e5fd07ce4be38e356cfe1d66c4c366706bf6de6" title='Last modified by kailbin | Jan 27, 2020' target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>Jan 27, 2020</span>
     </a>
   </div>
-  
-  
+
+
+
   <div>
-    <a href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Action/War-Deploy.md" target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/edit.svg" alt="Edit" /> Edit this page
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Action/War-Deploy.md" target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
     </a>
   </div>
-  
+
 </div>
 
+ 
+        <script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
 
       
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
     </div>
 
     
-  
-
-  <aside class="book-toc level-3 fixed">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#war-包部署">War 包部署</a>
-<ul>
-<li><a href="#pom-packaging">pom packaging</a></li>
-<li><a href="#继承-springbootservletinitializer">继承 SpringBootServletInitializer</a></li>
-<li><a href="#原理">原理</a></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#pom-packaging">pom packaging</a></li>
+    <li><a href="#继承-springbootservletinitializer">继承 SpringBootServletInitializer</a></li>
+    <li><a href="#原理">原理</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
-  </aside>
 
-
-
+ 
+    </aside>
+    
   </main>
-  
-  
+
   
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
