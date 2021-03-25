@@ -11,5 +11,7 @@ type: docs
 
 ## Draw.io
 
-- [Spring-ServletContextInitializer](https://app.diagrams.net/?#Uhttps://raw.githubusercontent.com/hello-world-example/Spring-WebMVC/master/demo-spring-draw/Spring-SpringServletContainerInitializer.drawio)
+- [ServletContextInitializer](https://app.diagrams.net/?#Uhttps://raw.githubusercontent.com/hello-world-example/Spring-WebMVC/master/demo-spring-draw/Spring-SpringServletContainerInitializer.drawio)
+- [Spring-AutoConfiguration.drawio](https://app.diagrams.net/?#Uhttps://raw.githubusercontent.com/hello-world-example/Spring-Boot/master/demo-spring-boot-draw/Spring-AutoConfiguration.drawio)
+- [Spring-Boot-Lifecycle.drawio](https://app.diagrams.net/?#Uhttps://raw.githubusercontent.com/hello-world-example/Spring-Boot/master/demo-spring-boot-draw/Spring-Boot-Lifecycle.drawio)
 
