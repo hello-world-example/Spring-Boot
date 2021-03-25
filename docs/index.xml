@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Introduction on Spring-Boot</title>
@@ -15,7 +15,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/_sidebar/</guid>
-      <description> Core  启动过程  Actuator  Endpoints Endpoints 详解  Action  war 包部署 热部署 静态资源 RFC 7230 and RFC 3986 错误 Error Page Testing    </description>
+      <description> Core  启动过程   Actuator  Endpoints Endpoints 详解   Action  war 包部署 热部署 静态资源 RFC 7230 and RFC 3986 错误 Error Page Testing     </description>
     </item>
     
     <item>
@@ -34,8 +34,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/Hot-Swapping/</guid>
-      <description>热部署   “How-to” Guides &amp;gt; 15. Hot Swapping
- Using Spring Boot &amp;gt; 8. Developer Tools
+      <description>热部署    “How-to” Guides &amp;gt; 15. Hot Swapping
+  Using Spring Boot &amp;gt; 8. Developer Tools
    依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-devtools&amp;lt;/artifactId&amp;gt; &amp;lt;optional&amp;gt;true&amp;lt;/optional&amp;gt; &amp;lt;/dependency&amp;gt; 默认配置 spring.freemarker.cache=false spring.devtools.restart.poll-interval=1s spring.devtools.restart.quiet-period=400ms spring.devtools.restart.exclude=META-INF/maven/**,META-INF/resources/**,resources/**,static/**,public/**,templates/**,**/*Test.class,**/*Tests.class,git.properties,META-INF/build-info.properties # 根据指定的文件触发 spring.devtools.restart.trigger-file= spring.devtools.livereload.enabled=true IDEA 设置 devtools 是检查 classpath（编译后的文件、target 目录） 下文件变化，所以修改文件后需要手动或者自动重新编译。
 IDEA 手动编译比较简单，右键修改的文件选择 “Build Module xxx” 或 “Recompile xxx” 即可。
 自动编译设置比较复杂，步骤如下
@@ -75,8 +75,8 @@ META-INF/resources/webjars/jquery/3.4.1/jquery.min.map META-INF/resources/webjar
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/docs/Action/War-Deploy/</guid>
-      <description>War 包部署 pom packaging &amp;lt;packaging&amp;gt;war&amp;lt;/packaging&amp;gt; 继承 SpringBootServletInitializer /** * 需要继承 SpringBootServletInitializer */ @SpringBootApplication public class Application extends SpringBootServletInitializer { public static void main(String[] args) { Application.run(LifecycleApplication.class, args); } @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) { return builder.sources(Application.class); } } 原理   Java™ Servlet 3.1 Specification &amp;gt; 8.2.4 Shared libraries / runtimes pluggability
- Java™ Servlet 3.1 规范 &amp;gt; 8.2.4 共享库 / 运行时可插拔性
+      <description>War 包部署 pom packaging &amp;lt;packaging&amp;gt;war&amp;lt;/packaging&amp;gt; 继承 SpringBootServletInitializer /** * 需要继承 SpringBootServletInitializer */ @SpringBootApplication public class Application extends SpringBootServletInitializer { public static void main(String[] args) { Application.run(LifecycleApplication.class, args); } @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) { return builder.sources(Application.class); } } 原理    Java™ Servlet 3.1 Specification &amp;gt; 8.2.4 Shared libraries / runtimes pluggability
+  Java™ Servlet 3.1 规范 &amp;gt; 8.2.4 共享库 / 运行时可插拔性
     javax.servlet.ServletContainerInitializer  spring-web : org.</description>
     </item>
     
@@ -87,8 +87,8 @@ META-INF/resources/webjars/jquery/3.4.1/jquery.min.map META-INF/resources/webjar
       
       <guid>https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints-detail/</guid>
       <description>Endpoints 详解 应用配置类 由于Spring Boot为了改善传统Spring应用繁杂的配置内容，采用了包扫描和自动化配置的机制来加载原本集中于xml文件中的各项内容。 虽然这样的做法，让我们的代码变得非常简洁，但是整个应用的实例创建和依赖关系等信息都被离散到了各个配置类的注解上，这使得我们分析整个应用中资源和实例的各种关系变得非常的困难。 而这类端点就可以帮助我们轻松的获取一系列关于Spring 应用配置内容的详细报告，比如：自动化配置的报告、Bean创建的报告、环境属性的报告等。
-/autoconfig 该端点用来获取应用的自动化配置报告，其中包括所有自动化配置的候选项。同时还列出了每个候选项自动化配置的各个先决条件是否满足。 所以，该端点可以帮助我们方便的找到一些自动化配置为什么没有生效的具体原因。该报告内容将自动化配置内容分为两部分： - positiveMatches中返回的是条件匹配成功的自动化配置 - negativeMatches中返回的是条件匹配不成功的自动化配置
-{ &amp;#34;positiveMatches&amp;#34;: { // 条件匹配成功的 &amp;#34;EndpointWebMvcAutoConfiguration&amp;#34;: [ { &amp;#34;condition&amp;#34;: &amp;#34;OnClassCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;@ConditionalOnClass classes found: javax.servlet.Servlet,org.springframework.web.servlet.DispatcherServlet&amp;#34; }, { &amp;#34;condition&amp;#34;: &amp;#34;OnWebApplicationCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;found web application StandardServletEnvironment&amp;#34; } ], ... }, &amp;#34;negativeMatches&amp;#34;: { // 条件不匹配成功的 &amp;#34;HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration&amp;#34;: [ { &amp;#34;condition&amp;#34;: &amp;#34;OnClassCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;required @ConditionalOnClass classes not found: org.springframework.jdbc.core.JdbcTemplate&amp;#34; } ], ... } } 从如上示例中我们可以看到，每个自动化配置候选项中都有一系列的条件， 比如上面没有成功匹配的HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration配置， 它的先决条件就是需要在工程中包含org.springframework.jdbc.core.JdbcTemplate类，由于我们没有引入相关的依赖，它就不会执行自动化配置内容。 所以，当我们发现有一些期望的配置没有生效时，就可以通过该端点来查看没有生效的具体原因。
+/autoconfig 该端点用来获取应用的自动化配置报告，其中包括所有自动化配置的候选项。同时还列出了每个候选项自动化配置的各个先决条件是否满足。 所以，该端点可以帮助我们方便的找到一些自动化配置为什么没有生效的具体原因。该报告内容将自动化配置内容分为两部分：
+ positiveMatches中返回的是条件匹配成功的自动化配置 negativeMatches中返回的是条件匹配不成功的自动化配置  { &amp;#34;positiveMatches&amp;#34;: { // 条件匹配成功的 &amp;#34;EndpointWebMvcAutoConfiguration&amp;#34;: [ { &amp;#34;condition&amp;#34;: &amp;#34;OnClassCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;@ConditionalOnClass classes found: javax.servlet.Servlet,org.springframework.web.servlet.DispatcherServlet&amp;#34; }, { &amp;#34;condition&amp;#34;: &amp;#34;OnWebApplicationCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;found web application StandardServletEnvironment&amp;#34; } ], ... }, &amp;#34;negativeMatches&amp;#34;: { // 条件不匹配成功的 &amp;#34;HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration&amp;#34;: [ { &amp;#34;condition&amp;#34;: &amp;#34;OnClassCondition&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;required @ConditionalOnClass classes not found: org.springframework.jdbc.core.JdbcTemplate&amp;#34; } ], ... } } 从如上示例中我们可以看到，每个自动化配置候选项中都有一系列的条件， 比如上面没有成功匹配的HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration配置， 它的先决条件就是需要在工程中包含org.springframework.jdbc.core.JdbcTemplate类，由于我们没有引入相关的依赖，它就不会执行自动化配置内容。 所以，当我们发现有一些期望的配置没有生效时，就可以通过该端点来查看没有生效的具体原因。
 /beans 该端点用来获取应用上下文中创建的所有Bean。</description>
     </item>
     
@@ -109,7 +109,7 @@ endpoints 暴露的方式将取决于您选择的技术类型。 大多数应用
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/docs/Core/Main-Lifecycle/</guid>
-      <description>main 方法启动过程 SpringApplication 构造方法 public SpringApplication(ResourceLoader resourceLoader, Class&amp;lt;?&amp;gt;... primarySources) { ... // 通过 SpringFactories 方式获取 ApplicationContextInitializer  // 允许在 ApplicationContext refresh 之前，对其实例做进一步的设置和处理  setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class)); // 通过 SpringFactories 方式获取 ApplicationListener 的实现，接收事件  setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class)); // 获取启动的类  this.mainApplicationClass = deduceMainApplicationClass(); } private Class&amp;lt;?&amp;gt; deduceMainApplicationClass() { ... StackTraceElement[] stackTrace = new RuntimeException().getStackTrace(); for (StackTraceElement stackTraceElement : stackTrace) { // 遍历调用栈，获取第一个 main 方法  if (&amp;#34;main&amp;#34;.equals(stackTraceElement.getMethodName())) { return Class.forName(stackTraceElement.getClassName()); } } .</description>
+      <description>main 方法启动过程 SpringApplication 构造方法 public SpringApplication(ResourceLoader resourceLoader, Class&amp;lt;?&amp;gt;... primarySources) { ... // 通过 SpringFactories 方式获取 ApplicationContextInitializer  // 允许在 ApplicationContext refresh 之前，对其实例做进一步的设置和处理  setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class)); // 通过 SpringFactories 方式获取 ApplicationListener 的实现，接收事件  setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class)); // 获取启动的类  this.mainApplicationClass = deduceMainApplicationClass(); } private Class&amp;lt;?&amp;gt; deduceMainApplicationClass() { ... StackTraceElement[] stackTrace = new RuntimeException().getStackTrace(); for (StackTraceElement stackTraceElement : stackTrace) { // 遍历调用栈，获取第一个 main 方法  if (&amp;#34;main&amp;#34;.equals(stackTraceElement.getMethodName())) { return Class.forName(stackTraceElement.getClassName()); } } ... } run 方法 public ConfigurableApplicationContext run(String.</description>
     </item>
     
     <item>
@@ -118,7 +118,7 @@ endpoints 暴露的方式将取决于您选择的技术类型。 大多数应用
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Boot/docs/Unit-Test/</guid>
-      <description> Spring Boot 单元测试   Spring Boot - Part IV. Spring Boot features - 41. Testing   </description>
+      <description>Spring Boot 单元测试   Spring Boot - Part IV. Spring Boot features - 41. Testing   </description>
     </item>
     
   </channel>

@@ -4,15 +4,18 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="RFC 7230 and RFC 3986 错误 问题 在使用 内嵌 Tomcat 的时候，有些请求会报以下错误：
+HTTP Status 400 – Bad Request Type Exception Report Message Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986 Description The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."><meta property="og:title" content="" />
+<meta property="og:description" content="RFC 7230 and RFC 3986 错误 问题 在使用 内嵌 Tomcat 的时候，有些请求会报以下错误：
+HTTP Status 400 – Bad Request Type Exception Report Message Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986 Description The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Boot/docs/Action/RFC-7230_RFC-3986/" />
+<meta property="article:modified_time" content="2020-01-28T00:54:42+08:00" />
 <title>R F C 7230 R F C 3986 | Spring-Boot</title>
-
-
-<link rel="stylesheet" href="/Spring-Boot/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
-
-
-
-
 <link rel="icon" href="/Spring-Boot/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Boot/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
 
 
 <!--
@@ -24,13 +27,14 @@ https://github.com/alex-shpak/hugo-book
 </head>
 
 <body>
-  <input type="checkbox" style="display: none" id="menu-control" />
-  <main class="flex container">
-
-    <aside class="book-menu fixed">
-      <nav>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
 <h2 class="book-brand">
-  <a href="https://hello-world-example.github.io/Spring-Boot/">Spring-Boot</a>
+  <a href="/Spring-Boot"><span>Spring-Boot</span>
+  </a>
 </h2>
 
 
@@ -38,41 +42,39 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-    
-  
-  
-  
 
-  <style>
-  nav ul a[href$="\2fSpring-Boot\2f docs\2f Action\2fRFC-7230_RFC-3986\2f "] {
-      color: #004ed0;
-  }
-  </style>
 
-<ul>
+
+
+
+
+  <ul>
 <li><strong>Core</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Core/Main-Lifecycle/">启动过程</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Actuator</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints/">Endpoints</a></li>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints-detail/">Endpoints 详解</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Action</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Action/War-Deploy/">war 包部署</a></li>
 <li><a href="/Spring-Boot/docs/Action/Hot-Swapping/">热部署</a></li>
 <li><a href="/Spring-Boot/docs/Action/Static-Resources/">静态资源</a></li>
-<li><a href="/Spring-Boot/docs/Action/RFC-7230_RFC-3986/">RFC 7230 and RFC 3986 错误</a></li>
+<li><a href="/Spring-Boot/docs/Action/RFC-7230_RFC-3986/"class=active>RFC 7230 and RFC 3986 错误</a></li>
 <li><a href="/Spring-Boot/docs/Action/Error-Page/">Error Page</a></li>
 <li><del><a href="/Spring-Boot/docs/Unit-Test/">Testing</a></del></li>
 <li></li>
-</ul></li>
 </ul>
+</li>
+</ul>
+
+
+
 
 
 
@@ -83,35 +85,54 @@ https://github.com/alex-shpak/hugo-book
 </nav>
 
 
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
 
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
     </aside>
 
     <div class="book-page">
-      <header class="flex align-center justify-between book-header">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="/Spring-Boot/svg/menu.svg" alt="Menu" />
+    <img src="/Spring-Boot/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
+
   <strong>R F C 7230 R F C 3986</strong>
-</header>
+
+  <label for="toc-control">
+    <img src="/Spring-Boot/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题">问题</a></li>
+    <li><a href="#原因">原因</a></li>
+    <li><a href="#解决方案">解决方案</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
 
       
-<article class="markdown">
-
-<h1 id="rfc-7230-and-rfc-3986-错误">RFC 7230 and RFC 3986 错误</h1>
-
+      
+  <article class="markdown"><h1 id="rfc-7230-and-rfc-3986-错误">RFC 7230 and RFC 3986 错误</h1>
 <h2 id="问题">问题</h2>
-
 <p>在使用 内嵌 Tomcat 的时候，有些请求会报以下错误：</p>
-
 <pre><code>HTTP Status 400 – Bad Request
 
 Type Exception Report
@@ -134,91 +155,119 @@ java.lang.IllegalArgumentException: Invalid character found in the request targe
 	org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	java.lang.Thread.run(Thread.java:748)
 Note The full stack trace of the root cause is available in the server logs.
-</code></pre>
-
-<h2 id="原因">原因</h2>
-
+</code></pre><h2 id="原因">原因</h2>
 <p><strong>Tomcat 8.0</strong> 以后对请求 URL 做了严格的过滤，Url 中只允许包含英文字母 <code>a-zA-Z</code>、数字 <code>0-9</code>、<code>-</code>、<code>_</code>、<code>.</code>、<code>~</code> 4个特殊字符以及所有保留字符（<code>! * ' ( ) ; : @ &amp; = + $ , / ? # [ ]</code>）</p>
-
 <blockquote>
 <p><a href="https://blog.csdn.net/qq_32010299/article/details/51790407">RFC3986之URL编码与解码、AFPercentEscapedStringFromString</a></p>
 </blockquote>
-
 <h2 id="解决方案">解决方案</h2>
-
 <ul>
 <li>对特殊字符进行 url 编码</li>
 <li>使用 post 请求</li>
-
-<li><p>修改参数，方法如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Bean</span>
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ConfigurableServletWebServerFactory</span> webServerFactory() {
-TomcatServletWebServerFactory <span style="color:#a6e22e">factory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TomcatServletWebServerFactory();
-factory.<span style="color:#a6e22e">addConnectorCustomizers</span>(<span style="color:#66d9ef">new</span> TomcatConnectorCustomizer() {
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">void</span> customize(Connector <span style="color:#a6e22e">connector</span>) {
-        connector.<span style="color:#a6e22e">setProperty</span>(<span style="color:#e6db74">&#34;relaxedQueryChars&#34;</span>, <span style="color:#e6db74">&#34;|{}[]&#34;</span>);
-    }
-});
-<span style="color:#66d9ef">return</span> factory;
-}</code></pre></div></li>
+<li>修改参数，方法如下</li>
 </ul>
-
-<h2 id="read-more">Read More</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Bean</span>
+<span style="color:#66d9ef">public</span> ConfigurableServletWebServerFactory <span style="color:#a6e22e">webServerFactory</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    TomcatServletWebServerFactory factory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TomcatServletWebServerFactory<span style="color:#f92672">();</span>
+    factory<span style="color:#f92672">.</span><span style="color:#a6e22e">addConnectorCustomizers</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> TomcatConnectorCustomizer<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">customize</span><span style="color:#f92672">(</span>Connector connector<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            connector<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;relaxedQueryChars&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;|{}[]&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">});</span>
+    <span style="color:#66d9ef">return</span> factory<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="read-more">Read More</h2>
 <ul>
 <li><a href="https://stackoverflow.com/questions/46251131/invalid-character-found-in-the-request-target-in-spring-boot">nvalid character found in the request target in spring boot</a></li>
 <li><a href="https://tomcat.apache.org/tomcat-8.5-doc/config/systemprops.html#Other">Apache Tomcat 8 Configuration Reference</a> 搜索 <code>relaxedQueryChars</code></li>
 <li><a href="https://blog.csdn.net/qq_32010299/article/details/51790407">RFC3986之URL编码与解码、AFPercentEscapedStringFromString</a></li>
 </ul>
 </article>
-
+ 
       
-<div class="book-footer justify-between">
-  
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
   <div>
     
-    <a href="https://github.com/hello-world-example/Spring-Boot/commit/4bcb52863e9c6a08ba06c71e8d23ca72831cc38d" title='Last modified Jan 28, 2020 by kailbin' target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/calendar.svg" alt="Changed" /> Jan 28, 2020
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/commit/4bcb52863e9c6a08ba06c71e8d23ca72831cc38d" title='Last modified by kailbin | Jan 28, 2020' target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>Jan 28, 2020</span>
     </a>
   </div>
-  
-  
+
+
+
   <div>
-    <a href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Action/RFC-7230_RFC-3986.md" target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/edit.svg" alt="Edit" /> Edit this page
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Action/RFC-7230_RFC-3986.md" target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
     </a>
   </div>
-  
+
 </div>
 
+ 
+        <script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
 
       
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
     </div>
 
     
-  
-
-  <aside class="book-toc level-3 fixed">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#rfc-7230-and-rfc-3986-错误">RFC 7230 and RFC 3986 错误</a>
-<ul>
-<li><a href="#问题">问题</a></li>
-<li><a href="#原因">原因</a></li>
-<li><a href="#解决方案">解决方案</a></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题">问题</a></li>
+    <li><a href="#原因">原因</a></li>
+    <li><a href="#解决方案">解决方案</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
-  </aside>
 
-
-
+ 
+    </aside>
+    
   </main>
-  
-  
+
   
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

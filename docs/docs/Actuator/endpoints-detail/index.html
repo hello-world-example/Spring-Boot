@@ -4,15 +4,22 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Endpoints 详解 应用配置类 由于Spring Boot为了改善传统Spring应用繁杂的配置内容，采用了包扫描和自动化配置的机制来加载原本集中于xml文件中的各项内容。 虽然这样的做法，让我们的代码变得非常简洁，但是整个应用的实例创建和依赖关系等信息都被离散到了各个配置类的注解上，这使得我们分析整个应用中资源和实例的各种关系变得非常的困难。 而这类端点就可以帮助我们轻松的获取一系列关于Spring 应用配置内容的详细报告，比如：自动化配置的报告、Bean创建的报告、环境属性的报告等。
+/autoconfig 该端点用来获取应用的自动化配置报告，其中包括所有自动化配置的候选项。同时还列出了每个候选项自动化配置的各个先决条件是否满足。 所以，该端点可以帮助我们方便的找到一些自动化配置为什么没有生效的具体原因。该报告内容将自动化配置内容分为两部分：
+ positiveMatches中返回的是条件匹配成功的自动化配置 negativeMatches中返回的是条件匹配不成功的自动化配置  { &#34;positiveMatches&#34;: { // 条件匹配成功的 &#34;EndpointWebMvcAutoConfiguration&#34;: [ { &#34;condition&#34;: &#34;OnClassCondition&#34;, &#34;message&#34;: &#34;@ConditionalOnClass classes found: javax.servlet.Servlet,org.springframework.web.servlet.DispatcherServlet&#34; }, { &#34;condition&#34;: &#34;OnWebApplicationCondition&#34;, &#34;message&#34;: &#34;found web application StandardServletEnvironment&#34; } ], ... }, &#34;negativeMatches&#34;: { // 条件不匹配成功的 &#34;HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration&#34;: [ { &#34;condition&#34;: &#34;OnClassCondition&#34;, &#34;message&#34;: &#34;required @ConditionalOnClass classes not found: org.springframework.jdbc.core.JdbcTemplate&#34; } ], ... } } 从如上示例中我们可以看到，每个自动化配置候选项中都有一系列的条件， 比如上面没有成功匹配的HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration配置， 它的先决条件就是需要在工程中包含org.springframework.jdbc.core.JdbcTemplate类，由于我们没有引入相关的依赖，它就不会执行自动化配置内容。 所以，当我们发现有一些期望的配置没有生效时，就可以通过该端点来查看没有生效的具体原因。
+/beans 该端点用来获取应用上下文中创建的所有Bean。"><meta property="og:title" content="" />
+<meta property="og:description" content="Endpoints 详解 应用配置类 由于Spring Boot为了改善传统Spring应用繁杂的配置内容，采用了包扫描和自动化配置的机制来加载原本集中于xml文件中的各项内容。 虽然这样的做法，让我们的代码变得非常简洁，但是整个应用的实例创建和依赖关系等信息都被离散到了各个配置类的注解上，这使得我们分析整个应用中资源和实例的各种关系变得非常的困难。 而这类端点就可以帮助我们轻松的获取一系列关于Spring 应用配置内容的详细报告，比如：自动化配置的报告、Bean创建的报告、环境属性的报告等。
+/autoconfig 该端点用来获取应用的自动化配置报告，其中包括所有自动化配置的候选项。同时还列出了每个候选项自动化配置的各个先决条件是否满足。 所以，该端点可以帮助我们方便的找到一些自动化配置为什么没有生效的具体原因。该报告内容将自动化配置内容分为两部分：
+ positiveMatches中返回的是条件匹配成功的自动化配置 negativeMatches中返回的是条件匹配不成功的自动化配置  { &#34;positiveMatches&#34;: { // 条件匹配成功的 &#34;EndpointWebMvcAutoConfiguration&#34;: [ { &#34;condition&#34;: &#34;OnClassCondition&#34;, &#34;message&#34;: &#34;@ConditionalOnClass classes found: javax.servlet.Servlet,org.springframework.web.servlet.DispatcherServlet&#34; }, { &#34;condition&#34;: &#34;OnWebApplicationCondition&#34;, &#34;message&#34;: &#34;found web application StandardServletEnvironment&#34; } ], ... }, &#34;negativeMatches&#34;: { // 条件不匹配成功的 &#34;HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration&#34;: [ { &#34;condition&#34;: &#34;OnClassCondition&#34;, &#34;message&#34;: &#34;required @ConditionalOnClass classes not found: org.springframework.jdbc.core.JdbcTemplate&#34; } ], ... } } 从如上示例中我们可以看到，每个自动化配置候选项中都有一系列的条件， 比如上面没有成功匹配的HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration配置， 它的先决条件就是需要在工程中包含org.springframework.jdbc.core.JdbcTemplate类，由于我们没有引入相关的依赖，它就不会执行自动化配置内容。 所以，当我们发现有一些期望的配置没有生效时，就可以通过该端点来查看没有生效的具体原因。
+/beans 该端点用来获取应用上下文中创建的所有Bean。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Boot/docs/Actuator/endpoints-detail/" />
+<meta property="article:modified_time" content="2020-01-26T18:07:38+08:00" />
 <title>Endpoints Detail | Spring-Boot</title>
-
-
-<link rel="stylesheet" href="/Spring-Boot/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
-
-
-
-
 <link rel="icon" href="/Spring-Boot/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Boot/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
 
 
 <!--
@@ -24,13 +31,14 @@ https://github.com/alex-shpak/hugo-book
 </head>
 
 <body>
-  <input type="checkbox" style="display: none" id="menu-control" />
-  <main class="flex container">
-
-    <aside class="book-menu fixed">
-      <nav>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
 <h2 class="book-brand">
-  <a href="https://hello-world-example.github.io/Spring-Boot/">Spring-Boot</a>
+  <a href="/Spring-Boot"><span>Spring-Boot</span>
+  </a>
 </h2>
 
 
@@ -38,31 +46,25 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-    
-  
-  
-  
 
-  <style>
-  nav ul a[href$="\2fSpring-Boot\2f docs\2f Actuator\2f endpoints-detail\2f "] {
-      color: #004ed0;
-  }
-  </style>
 
-<ul>
+
+
+
+
+  <ul>
 <li><strong>Core</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Core/Main-Lifecycle/">启动过程</a></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Actuator</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Actuator/endpoints/">Endpoints</a></li>
-<li><a href="/Spring-Boot/docs/Actuator/endpoints-detail/">Endpoints 详解</a></li>
-</ul></li>
+<li><a href="/Spring-Boot/docs/Actuator/endpoints-detail/"class=active>Endpoints 详解</a></li>
+</ul>
+</li>
 <li><strong>Action</strong>
-
 <ul>
 <li><a href="/Spring-Boot/docs/Action/War-Deploy/">war 包部署</a></li>
 <li><a href="/Spring-Boot/docs/Action/Hot-Swapping/">热部署</a></li>
@@ -71,8 +73,12 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Spring-Boot/docs/Action/Error-Page/">Error Page</a></li>
 <li><del><a href="/Spring-Boot/docs/Unit-Test/">Testing</a></del></li>
 <li></li>
-</ul></li>
 </ul>
+</li>
+</ul>
+
+
+
 
 
 
@@ -83,43 +89,78 @@ https://github.com/alex-shpak/hugo-book
 </nav>
 
 
-<script>
-(function() {
-  var menu = document.querySelector("aside.book-menu nav");
-  addEventListener("beforeunload", function(event) {
-    localStorage.setItem("menu.scrollTop", menu.scrollTop);
-  });
-  menu.scrollTop = localStorage.getItem("menu.scrollTop");
-})();
-</script>
 
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
     </aside>
 
     <div class="book-page">
-      <header class="flex align-center justify-between book-header">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
   <label for="menu-control">
-    <img src="/Spring-Boot/svg/menu.svg" alt="Menu" />
+    <img src="/Spring-Boot/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
+
   <strong>Endpoints Detail</strong>
-</header>
+
+  <label for="toc-control">
+    <img src="/Spring-Boot/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#应用配置类">应用配置类</a>
+      <ul>
+        <li><a href="#autoconfig">/autoconfig</a></li>
+        <li><a href="#beans">/beans</a></li>
+        <li><a href="#configprops">/configprops</a></li>
+        <li><a href="#env">/env</a></li>
+        <li><a href="#mappings">/mappings</a></li>
+        <li><a href="#info">/info</a></li>
+      </ul>
+    </li>
+    <li><a href="#度量指标类">度量指标类</a>
+      <ul>
+        <li><a href="#metrics">/metrics</a></li>
+        <li><a href="#health">/health</a></li>
+        <li><a href="#dump">/dump</a></li>
+        <li><a href="#trace">/trace</a></li>
+      </ul>
+    </li>
+    <li><a href="#操作控制类">操作控制类</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
 
       
-<article class="markdown">
-
-<h1 id="endpoints-详解">Endpoints 详解</h1>
-
+      
+  <article class="markdown"><h1 id="endpoints-详解">Endpoints 详解</h1>
 <h2 id="应用配置类">应用配置类</h2>
-
 <p>由于Spring Boot为了改善传统Spring应用繁杂的配置内容，采用了包扫描和自动化配置的机制来加载原本集中于xml文件中的各项内容。
 虽然这样的做法，让我们的代码变得非常简洁，但是整个应用的实例创建和依赖关系等信息都被离散到了各个配置类的注解上，这使得我们分析整个应用中资源和实例的各种关系变得非常的困难。
 而这类端点就可以帮助我们轻松的获取一系列关于Spring 应用配置内容的详细报告，比如：自动化配置的报告、Bean创建的报告、环境属性的报告等。</p>
-
 <h3 id="autoconfig">/autoconfig</h3>
-
 <p>该端点用来获取应用的自动化配置报告，其中包括所有自动化配置的候选项。同时还列出了每个候选项自动化配置的各个先决条件是否满足。
-所以，该端点可以帮助我们方便的找到一些自动化配置为什么没有生效的具体原因。该报告内容将自动化配置内容分为两部分：
-- <code>positiveMatches</code>中返回的是条件匹配成功的自动化配置
-- <code>negativeMatches</code>中返回的是条件匹配不成功的自动化配置</p>
+所以，该端点可以帮助我们方便的找到一些自动化配置为什么没有生效的具体原因。该报告内容将自动化配置内容分为两部分：</p>
+<ul>
+<li><code>positiveMatches</code>中返回的是条件匹配成功的自动化配置</li>
+<li><code>negativeMatches</code>中返回的是条件匹配不成功的自动化配置</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;positiveMatches&#34;</span>: { <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">条件匹配成功的</span>
         <span style="color:#f92672">&#34;EndpointWebMvcAutoConfiguration&#34;</span>: [
@@ -143,14 +184,12 @@ https://github.com/alex-shpak/hugo-book
         ],
         <span style="color:#960050;background-color:#1e0010">...</span>
     }
-}</code></pre></div>
-<p>从如上示例中我们可以看到，每个自动化配置候选项中都有一系列的条件，
+}
+</code></pre></div><p>从如上示例中我们可以看到，每个自动化配置候选项中都有一系列的条件，
 比如上面没有成功匹配的<code>HealthIndicatorAutoConfiguration.DataSourcesHealthIndicatorConfiguration</code>配置，
 它的先决条件就是需要在工程中包含<code>org.springframework.jdbc.core.JdbcTemplate</code>类，由于我们没有引入相关的依赖，它就不会执行自动化配置内容。
 所以，当我们发现有一些期望的配置没有生效时，就可以通过该端点来查看没有生效的具体原因。</p>
-
 <h3 id="beans">/beans</h3>
-
 <p>该端点用来获取应用上下文中创建的所有Bean。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">[
     {
@@ -177,9 +216,8 @@ https://github.com/alex-shpak/hugo-book
             }
         ]
     }
-]</code></pre></div>
-<p>如上示例中，我们可以看到在每个bean中都包含了下面这几个信息：</p>
-
+]
+</code></pre></div><p>如上示例中，我们可以看到在每个bean中都包含了下面这几个信息：</p>
 <ul>
 <li><code>bean</code>：Bean的名称</li>
 <li><code>scope</code>：Bean的作用域</li>
@@ -187,9 +225,7 @@ https://github.com/alex-shpak/hugo-book
 <li><code>reource</code>：class文件的具体路径</li>
 <li><code>dependencies</code>：依赖的Bean名称</li>
 </ul>
-
 <h3 id="configprops">/configprops</h3>
-
 <p>该端点用来获取应用中配置的属性信息报告。
 从下面该端点返回示例的片段中，我们看到返回了关于该短信的配置信息，<code>prefix</code>属性代表了属性的配置前缀，<code>properties</code>代表了各个属性的名称和值。
 所以，我们可以通过该报告来看到各个属性的配置路径，比如我们要关闭该端点，就可以通过使用<code>endpoints.configprops.enabled=false</code>来完成设置。</p>
@@ -203,9 +239,8 @@ https://github.com/alex-shpak/hugo-book
         }
     },
     <span style="color:#960050;background-color:#1e0010">...</span>
-}</code></pre></div>
-<h3 id="env">/env</h3>
-
+}
+</code></pre></div><h3 id="env">/env</h3>
 <p>该端点与<code>/configprops</code>不同，它用来获取应用所有可用的环境属性报告。
 包括：环境变量、JVM属性、应用的配置配置、命令行中的参数。
 从下面该端点返回的示例片段中，我们可以看到它不仅返回了应用的配置属性，还返回了系统属性、环境变量等丰富的配置信息，其中也包括了应用还没有使用的配置。
@@ -244,9 +279,8 @@ https://github.com/alex-shpak/hugo-book
         <span style="color:#f92672">&#34;info.app.version&#34;</span>: <span style="color:#e6db74">&#34;v1.0.0&#34;</span>,
         <span style="color:#f92672">&#34;spring.application.name&#34;</span>: <span style="color:#e6db74">&#34;hello&#34;</span>
     }
-}</code></pre></div>
-<h3 id="mappings">/mappings</h3>
-
+}
+</code></pre></div><h3 id="mappings">/mappings</h3>
 <p>该端点用来返回所有Spring MVC的控制器映射关系报告。
 从下面的示例片段中，我们可以看该报告的信息与我们在启用Spring MVC的Web应用时输出的日志信息类似，其中bean属性标识了该映射关系的请求处理器，method属性标识了该映射关系的具体处理类和处理函数。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -268,33 +302,25 @@ https://github.com/alex-shpak/hugo-book
         <span style="color:#f92672">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()&#34;</span>
     },
     <span style="color:#960050;background-color:#1e0010">...</span>
-}</code></pre></div>
-<h3 id="info">/info</h3>
-
+}
+</code></pre></div><h3 id="info">/info</h3>
 <p>该端点用来返回一些应用自定义的信息。默认情况下，该端点只会返回一个空的json内容。我们可以在application.properties配置文件中通过info前缀来设置一些属性，比如下面这样：</p>
-
 <pre><code>info.app.name=spring-boot-hello
 info.app.version=v1.0.0
-</code></pre>
-
-<p>再访问/info端点，我们可以得到下面的返回报告，其中就包含了上面我们在应用自定义的两个参数。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-" data-lang="">{
-    &#34;app&#34;: {
-        &#34;name&#34;: &#34;spring-boot-hello&#34;,
-        &#34;version&#34;: &#34;v1.0.0&#34;
+</code></pre><p>再访问/info端点，我们可以得到下面的返回报告，其中就包含了上面我们在应用自定义的两个参数。</p>
+<pre><code class="language-$xslt" data-lang="$xslt">{
+    &quot;app&quot;: {
+        &quot;name&quot;: &quot;spring-boot-hello&quot;,
+        &quot;version&quot;: &quot;v1.0.0&quot;
     }
-}</code></pre></div>
-<h2 id="度量指标类">度量指标类</h2>
-
+}
+</code></pre><h2 id="度量指标类">度量指标类</h2>
 <p>上面我们所介绍的应用配置类端点所提供的信息报告在应用启动的时候都已经基本确定了其返回内容，可以说是一个静态报告。
 而度量指标类端点提供的报告内容则是动态变化的，这些端点提供了应用程序在运行过程中的一些快照信息，比如：<strong>内存使用情况</strong>、<strong>HTTP请求统计</strong>、<strong>外部资源</strong>指标等。
 这些端点对于我们构建微服务架构中的监控系统非常有帮助，由于Spring Boot应用自身实现了这些端点，所以我们可以很方便地利用它们来收集我们想要的信息，以制定出各种自动化策略。
 下面，我们就来分别看看这些强大的端点功能。</p>
-
 <h3 id="metrics">/metrics</h3>
-
 <p>该端点用来返回当前应用的各类重要度量指标，比如：<strong>内存信息</strong>、<strong>线程信息</strong>、<strong>垃圾回收信息</strong>等。</p>
-
 <pre><code>{
   &quot;mem&quot;: 541305,
   &quot;mem.free&quot;: 317864,
@@ -336,10 +362,7 @@ info.app.version=v1.0.0
   &quot;counter.status.200.hello&quot;: 11,
   &quot;counter.status.200.env&quot;: 1
 }
-</code></pre>
-
-<p>从上面的示例中，我们看到有这些重要的度量值：</p>
-
+</code></pre><p>从上面的示例中，我们看到有这些重要的度量值：</p>
 <ul>
 <li><code>系统信息</code>：包括处理器数量<code>processors</code>、运行时间<code>uptime</code>和<code>instance.uptime</code>、系统平均负载<code>systemload.average</code>。</li>
 <li><code>mem.*</code>：内存概要信息，包括<strong>分配给应用的总内存数量</strong>以及<strong>当前空闲的内存数量</strong>。这些信息来自<code>java.lang.Runtime</code>。</li>
@@ -352,12 +375,10 @@ info.app.version=v1.0.0
 <li><code>gauge.*</code>：HTTP请求的性能指标之一，它主要用来<strong>反映一个绝对数值</strong>。比如上面示例中的<code>gauge.response.hello: 5</code>，它表示上一次hello请求的延迟时间为5毫秒。</li>
 <li><code>counter.*</code>：HTTP请求的性能指标之一，它主要作为计数器来使用，记录了增加量和减少量。如上示例中<code>counter.status.200.hello: 11</code>，它代表了hello请求返回200状态的次数为11。</li>
 </ul>
-
 <p>对于<code>gauge.*</code>和<code>counter.*</code>的统计，这里有一个特殊的内容请求<code>star-star</code>，它代表了对静态资源的访问。
 这两类度量指标非常有用，我们不仅可以使用它默认的统计指标，还可以在程序中轻松的增加自定义统计值。
 只需要通过注入<code>org.springframework.boot.actuate.metrics.CounterService</code>和<code>org.springframework.boot.actuate.metrics.GaugeService</code>来实现自定义的统计指标信息。
 比如：我们可以像下面这样自定义实现对hello接口的访问次数统计。</p>
-
 <pre><code>@RestController
 public class HelloController {
     
@@ -371,13 +392,9 @@ public class HelloController {
     }
   
 }
-</code></pre>
-
-<p><code>/metrics</code>端点可以提供应用运行状态的完整度量指标报告，这项功能非常的实用，但是对于监控系统中的各项监控功能，它们的监控内容、数据收集频率都有所不同，如果我们每次都通过全量获取报告的方式来收集，略显粗暴。
+</code></pre><p><code>/metrics</code>端点可以提供应用运行状态的完整度量指标报告，这项功能非常的实用，但是对于监控系统中的各项监控功能，它们的监控内容、数据收集频率都有所不同，如果我们每次都通过全量获取报告的方式来收集，略显粗暴。
 所以，我们还可以通过<code>/metrics/{name}</code>接口来更细粒度的获取度量信息，比如我们可以通过访问<code>/metrics/mem.free</code>来获取当前可用内存数量。</p>
-
 <h3 id="health">/health</h3>
-
 <p>该端点在一开始的示例中我们已经使用过了，它用来获取应用的各类健康指标信息。
 在<code>spring-boot-starter-actuator</code>模块中自带实现了一些常用资源的健康指标检测器。
 这些检测器都通过<code>HealthIndicator</code>接口实现，并且会根据依赖关系的引入实现自动化装配，比如用于检测磁盘的<code>DiskSpaceHealthIndicator</code>、检测<code>DataSource</code>连接是否可用的<code>DataSourceHealthIndicator</code>等。
@@ -385,40 +402,33 @@ public class HelloController {
 比如：当使用<code>RocketMQ</code>作为消息代理时，由于没有自动化配置的检测器，所以我们需要自己来实现一个用来采集健康信息的检测器。
 比如，我们可以在Spring Boot的应用中，为<code>org.springframework.boot.actuate.health.HealthIndicator</code>接口实现一个对<code>RocketMQ</code>的检测器类：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Component</span>
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> RocketMQHealthIndicator <span style="color:#a6e22e">implements</span> HealthIndicator {
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RocketMQHealthIndicator</span> <span style="color:#66d9ef">implements</span> HealthIndicator <span style="color:#f92672">{</span>
 
     <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Health</span> health() {
-        <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">errorCode</span> <span style="color:#f92672">=</span> check();
-        <span style="color:#66d9ef">if</span> (errorCode <span style="color:#f92672">!=</span> 0) {
-          <span style="color:#66d9ef">return</span> Health.<span style="color:#a6e22e">down</span>().<span style="color:#a6e22e">withDetail</span>(<span style="color:#e6db74">&#34;Error Code&#34;</span>, errorCode).<span style="color:#a6e22e">build</span>();
-        }
-        <span style="color:#66d9ef">return</span> Health.<span style="color:#a6e22e">up</span>().<span style="color:#a6e22e">build</span>();
-    }
+    <span style="color:#66d9ef">public</span> Health <span style="color:#a6e22e">health</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> errorCode <span style="color:#f92672">=</span> check<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>errorCode <span style="color:#f92672">!=</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+          <span style="color:#66d9ef">return</span> Health<span style="color:#f92672">.</span><span style="color:#a6e22e">down</span><span style="color:#f92672">().</span><span style="color:#a6e22e">withDetail</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Error Code&#34;</span><span style="color:#f92672">,</span> errorCode<span style="color:#f92672">).</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> Health<span style="color:#f92672">.</span><span style="color:#a6e22e">up</span><span style="color:#f92672">().</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
 
-  	<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">int</span> check() {
+  	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">check</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
      	<span style="color:#75715e">// 对监控对象的检测操作
-</span><span style="color:#75715e"></span>  	}
-}</code></pre></div>
-<p>通过重写<code>health()</code>函数来实现健康检查，返回的Heath对象中，共有两项内容，
+</span><span style="color:#75715e"></span>  	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>通过重写<code>health()</code>函数来实现健康检查，返回的Heath对象中，共有两项内容，
 一个是状态信息，除了该示例中的<code>UP</code>与<code>DOWN</code>之外，还有<code>UNKNOWN</code>和<code>OUT_OF_SERVICE</code>，可以根据需要来实现返回；
 还有一个详细信息，采用<code>Map</code>的方式存储，在这里通过<code>withDetail</code>函数，注入了一个<code>Error Code</code>信息，我们也可以填入一下其他信息，比如，检测对象的IP地址、端口等。
 重新启动应用，并访问/health接口，我们在返回的JSON字符串中，将会包含了如下信息：</p>
-
 <pre><code>&quot;rocketMQ&quot;: {
   &quot;status&quot;: &quot;UP&quot;
 }
-</code></pre>
-
-<h3 id="dump">/dump</h3>
-
+</code></pre><h3 id="dump">/dump</h3>
 <p>该端点用来暴露程序运行中的线程信息。它使用<code>java.lang.management.ThreadMXBean</code>的<code>dumpAllThreads</code>方法来返回所有含有同步信息的活动线程详情。</p>
-
 <h3 id="trace">/trace</h3>
-
 <p>该端点用来返回基本的HTTP跟踪信息。默认情况下，跟踪信息的存储采用<code>org.springframework.boot.actuate.trace.InMemoryTraceRepository</code>实现的内存方式，始终保留最近的100条请求记录。
 它记录的内容格式如下：</p>
-
 <pre><code>[
     {
         &quot;timestamp&quot;: 1482570022463,
@@ -448,85 +458,116 @@ public class HelloController {
     },
     ...
 ]
-</code></pre>
-
-<h2 id="操作控制类">操作控制类</h2>
-
+</code></pre><h2 id="操作控制类">操作控制类</h2>
 <p>之前介绍的所有端点都是用来反映应用自身的属性或是运行中的状态，相对于操作控制类端点没有那么敏感，所以他们默认都是启用的。
 而操作控制类端点拥有更强大的控制能力，如果要使用它们的话，需要通过属性来配置开启。</p>
-
 <p>在原生端点中，只提供了一个用来关闭应用的端点：<code>/shutdown</code>。我们可以通过如下配置开启它：</p>
-
 <pre><code>endpoints.shutdown.enabled=true
-</code></pre>
-
-<p>在配置了上述属性之后，只需要访问该应用的<code>/shutdown</code>端点就能实现关闭该应用的远程操作。
+</code></pre><p>在配置了上述属性之后，只需要访问该应用的<code>/shutdown</code>端点就能实现关闭该应用的远程操作。
 由于开放关闭应用的操作本身是一件非常危险的事，所以真正在线上使用的时候，我们需要对其加入一定的保护机制，比如：定制Actuator的端点路径、整合Spring Security进行安全校验等。</p>
-
 <blockquote>
 <p>本文来自 <a href="http://blog.didispace.com/spring-boot-actuator-1/">Spring Boot Actuator监控端点小结</a></p>
 </blockquote>
 </article>
-
+ 
       
-<div class="book-footer justify-between">
-  
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
   <div>
     
-    <a href="https://github.com/hello-world-example/Spring-Boot/commit/851255c7c62c0fbca1894c4c7e2a28304f580f64" title='Last modified Jan 26, 2020 by kailbin' target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/calendar.svg" alt="Changed" /> Jan 26, 2020
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/commit/851255c7c62c0fbca1894c4c7e2a28304f580f64" title='Last modified by kailbin | Jan 26, 2020' target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>Jan 26, 2020</span>
     </a>
   </div>
-  
-  
+
+
+
   <div>
-    <a href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Actuator/endpoints-detail.md" target="_blank" rel="noopener">
-      <img src="/Spring-Boot/svg/edit.svg" alt="Edit" /> Edit this page
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Boot/edit/master/HuGo/content/docs/Actuator/endpoints-detail.md" target="_blank" rel="noopener">
+      <img src="/Spring-Boot/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
     </a>
   </div>
-  
+
 </div>
 
+ 
+        <script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
 
       
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
     </div>
 
     
-  
-
-  <aside class="book-toc level-3 fixed">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#endpoints-详解">Endpoints 详解</a>
-<ul>
-<li><a href="#应用配置类">应用配置类</a>
-<ul>
-<li><a href="#autoconfig">/autoconfig</a></li>
-<li><a href="#beans">/beans</a></li>
-<li><a href="#configprops">/configprops</a></li>
-<li><a href="#env">/env</a></li>
-<li><a href="#mappings">/mappings</a></li>
-<li><a href="#info">/info</a></li>
-</ul></li>
-<li><a href="#度量指标类">度量指标类</a>
-<ul>
-<li><a href="#metrics">/metrics</a></li>
-<li><a href="#health">/health</a></li>
-<li><a href="#dump">/dump</a></li>
-<li><a href="#trace">/trace</a></li>
-</ul></li>
-<li><a href="#操作控制类">操作控制类</a></li>
-</ul></li>
-</ul>
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#应用配置类">应用配置类</a>
+      <ul>
+        <li><a href="#autoconfig">/autoconfig</a></li>
+        <li><a href="#beans">/beans</a></li>
+        <li><a href="#configprops">/configprops</a></li>
+        <li><a href="#env">/env</a></li>
+        <li><a href="#mappings">/mappings</a></li>
+        <li><a href="#info">/info</a></li>
+      </ul>
+    </li>
+    <li><a href="#度量指标类">度量指标类</a>
+      <ul>
+        <li><a href="#metrics">/metrics</a></li>
+        <li><a href="#health">/health</a></li>
+        <li><a href="#dump">/dump</a></li>
+        <li><a href="#trace">/trace</a></li>
+      </ul>
+    </li>
+    <li><a href="#操作控制类">操作控制类</a></li>
+  </ul>
 </nav>
-  </aside>
 
-
-
+ 
+    </aside>
+    
   </main>
-  
-  
+
   
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
